@@ -6,9 +6,15 @@ from setuptools import setup, find_packages
 requirements_path = path.join(path.dirname(__file__), 'requirements.txt')
 install_requires = map(str.strip, open(requirements_path).readlines())
 
+
+def readme():
+    with open('README.rst') as f:
+        return f.read()
+
+
 setup(
     name='iamport-rest-client',
-    version='0.1.0',
+    version='0.1.1',
     packages=find_packages(),
     include_package_data=True,
     install_requires=install_requires,
@@ -16,6 +22,7 @@ setup(
     author_email='perhapsspy@gmail.com',
     url='https://github.com/iamport/iamport-rest-client-python',
     description="REST client for I'mport;(http://www.iamport.kr)",
+    long_description=readme(),
     license='MIT',
     zip_safe=False,
     classifiers=[
