@@ -6,7 +6,7 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
 
 * 이용 중 발생한 문제에 대해 책임지지 않습니다.
 * lexifdev님의 도움을 받아 작성되었습니다(`lexifdev's iamport 모듈 <https://github.com/lexifdev/iamport>`_)
-* 최초 작성은 `핑크퐁 북스토어 <store.pinkfong.com>`_ 에서 쓰기 위해 만들었습니다.
+* 최초 작성은 `핑크퐁 북스토어 <https://store.pinkfong.com>`_ 에서 쓰기 위해 만들었습니다.
 
 설치
 =======
