@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
-from os import path
-
 from setuptools import setup, find_packages
 
-requirements_path = path.join(path.dirname(__file__), 'requirements.txt')
-install_requires = map(str.strip, open(requirements_path).readlines())
+install_requires = ['requests']
 
 
 def readme():
@@ -14,7 +11,7 @@ def readme():
 
 setup(
     name='iamport-rest-client',
-    version='0.1.1',
+    version='0.1.2',
     packages=find_packages(),
     include_package_data=True,
     install_requires=install_requires,
