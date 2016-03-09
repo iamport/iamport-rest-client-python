@@ -8,6 +8,11 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
 * lexifdev님의 도움을 받아 작성되었습니다(`lexifdev's iamport 모듈 <https://github.com/lexifdev/iamport>`_)
 * 최초 작성은 `핑크퐁 북스토어 <https://store.pinkfong.com>`_ 에서 쓰기 위해 만들었습니다.
 
+호환성
+=======
+
+아직까지 파이썬2만 지원하는 상태입니다. 3 지원은 기여 부탁드립니다.
+
 설치
 =======
 
@@ -98,6 +103,7 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
 
 할 일
 ======
+- 파이썬 3 지원
 - 결제 목록 읽기
 - 비 인증 결제 지원
 - 테스트
