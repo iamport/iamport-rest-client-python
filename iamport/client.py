@@ -1,16 +1,13 @@
 # -*- coding: utf-8 -*-
 import requests
 
-TEST_IMP_KEY = 'imp_apikey'
-TEST_IMP_SECRET = 'ekKoeW8RyKuT0zgaZsUtXXTLQ4AhPFW3ZGseDA6bkA5lamv9OqDMnxyeB9wqOsuO9W3Mx9YSJ4dTqJ3f'
+__all__ = ['IAMPORT_API_URL', 'Iamport']
+
 IAMPORT_API_URL = 'https://api.iamport.kr/'
 
 
 class Iamport(object):
-    def __init__(self,
-                 imp_key=TEST_IMP_KEY,
-                 imp_secret=TEST_IMP_SECRET,
-                 imp_url=IAMPORT_API_URL):
+    def __init__(self, imp_key, imp_secret, imp_url=IAMPORT_API_URL):
         self.imp_key = imp_key
         self.imp_secret = imp_secret
         self.imp_url = imp_url
