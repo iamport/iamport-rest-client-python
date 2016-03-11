@@ -26,7 +26,7 @@ class Iamport(object):
         if response.status_code != requests.codes.ok:
             return {}
         result = response.json()
-        if result['code'] is not 0:
+        if result['code'] != 0:
             raise Iamport.ResponseError(result.get('code'), result.get('message'))
         return result.get('response')
 
