@@ -3,8 +3,7 @@ from iamport import Iamport
 import pytest
 
 
-def test_cancel():
-    iamport = Iamport()
+def test_cancel(iamport):
     with pytest.raises(TypeError):
         iamport.cancel(imp_uid='nothing')
     with pytest.raises(Iamport.ResponseError):
