@@ -2,6 +2,9 @@
 I'mport; REST Client
 =====================
 
+.. image:: https://travis-ci.org/iamport/iamport-rest-client-python.svg?branch=master
+    :target: https://travis-ci.org/iamport/iamport-rest-client-python
+
 Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
 
 * 이용 중 발생한 문제에 대해 책임지지 않습니다.
