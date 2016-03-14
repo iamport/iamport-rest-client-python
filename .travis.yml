@@ -1,0 +1,13 @@
+language: python
+sudo: false
+python:
+- pypy
+- pypy3
+- 2.7
+- 3.4
+- 3.5
+install:
+- pip install tox-travis flake8
+script:
+- flake8 .
+- tox
