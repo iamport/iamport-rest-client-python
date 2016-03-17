@@ -15,6 +15,8 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=install_requires,
+    setup_requires=['pytest-runner'],
+    tests_requires=['pytest'],
     author='PerhapsSPY',
     author_email='perhapsspy@gmail.com',
     url='https://github.com/iamport/iamport-rest-client-python',
