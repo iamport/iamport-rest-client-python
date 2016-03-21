@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
-
+import codecs
 install_requires = ['requests']
 
 
 def readme():
-    with open('README.rst') as f:
+    with codecs.open('README.rst', encoding='utf-8') as f:
         return f.read()
 
 
 setup(
     name='iamport-rest-client',
-    version='0.2.1',
+    version='0.2.2',
     packages=find_packages(),
     include_package_data=True,
     install_requires=install_requires,
