@@ -72,6 +72,14 @@ class Iamport(object):
         url = '{}payments/cancel'.format(self.imp_url)
         return self._post(url, payload)
 
+    def pay_onetime(self, **kwargs):
+        url = '{}subscribe/payments/onetime'.format(self.imp_url)
+        for key in ['merchant_uid', 'amount', 'card_number', 'expiry', 'birth', 'pwd_2digit']:
+            if key not in kwargs:
+                raise KeyError('Essential parameter is missing!: %s' % key)
+
+        return self._post(url, kwargs)
+
     def cancel_by_merchant_uid(self, merchant_uid, reason):
         payload = {'merchant_uid': merchant_uid, 'reason': reason}
         return self._cancel(payload)
