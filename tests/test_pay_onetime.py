@@ -15,7 +15,7 @@ def test_payOnetime(iamport):
     try:
         iamport.pay_onetime(**payload_notEnough)
     except KeyError as e:
-        assert e.message == "Essential parameter is missing!: card_number"
+        assert str(e) == "Essential parameter is missing!: card_number"
 
     payload_full = {
             'merchant_uid': '00000000',
