@@ -13,7 +13,7 @@ def test_payOnetime(iamport):
             }
 
     try:
-        result = iamport.pay_onetime(**payload_notEnough)
+        iamport.pay_onetime(**payload_notEnough)
     except KeyError as e:
         assert e.message == "Essential parameter is missing!: card_number"
 
@@ -27,7 +27,7 @@ def test_payOnetime(iamport):
             }
 
     try:
-        result = iamport.pay_onetime(**payload_full)
+        iamport.pay_onetime(**payload_full)
     except Iamport.ResponseError as e:
         assert e.code == -1
         assert u'카드정보 인증에 실패하였습니다.' in e.message
