@@ -3,13 +3,13 @@ from iamport import Iamport
 import pytest
 
 def test_payOnetime(iamport):
+    # Without 'card_number'
     payload_notEnough = {
-              'merchant_uid': '00000000'
-            , 'amount': 5000
-            #, 'card_number': '4092-0230-1234-1234'
-            , 'expiry': '2019-03'
-            , 'birth': '500203'
-            , 'pwd_2digit': '19'
+            'merchant_uid': '00000000',
+            'amount': 5000,
+            'expiry': '2019-03',
+            'birth': '500203',
+            'pwd_2digit': '19'
             }
 
     try:
@@ -18,12 +18,12 @@ def test_payOnetime(iamport):
         assert e.message == "Essential parameter is missing!: card_number"
 
     payload_full = {
-              'merchant_uid': '00000000'
-            , 'amount': 5000
-            , 'card_number': '4092-0230-1234-1234'
-            , 'expiry': '2019-03'
-            , 'birth': '500203'
-            , 'pwd_2digit': '19'
+            'merchant_uid': '00000000',
+            'amount': 5000,
+            'card_number': '4092-0230-1234-1234',
+            'expiry': '2019-03',
+            'birth': '500203',
+            'pwd_2digit': '19'
             }
 
     try:
