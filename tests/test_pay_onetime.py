@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from iamport import Iamport
-import pytest
+
 
 def test_payOnetime(iamport):
     # Without 'card_number'
