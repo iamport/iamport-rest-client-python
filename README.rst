@@ -27,6 +27,7 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
 1. 결제 정보 찾기
 2. 가격 확인
 3. 취소
+4. 비 인증 결제
 
 
 사용법
@@ -101,14 +102,42 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
         print e.message  # 에러난 이유를 알 수 있음
 
 
+비인증 결제
+-------------
+
+1회성 비인증 결제를 진행합니다.
+
+.. code-block:: python
+
+    # 테스트용 값
+    payload = {
+        'merchant_uid': '00000000',
+        'amount': 5000,
+        'card_number': '4092-0230-1234-1234',
+        'expiry': '2019-03',
+        'birth': '500203',
+        'pwd_2digit': '19'
+    }
+    try:
+        response = iamport.pay_onetime(**payload)
+    except KeyError:
+        # 필수 값이 없을때 에러 처리
+        pass
+    except Iamport.ResponseError as e:
+        # 응답 에러 처리
+        pass
+
+
+
 기여
 ======
 - 파이썬 3 지원, 테스트: `dahlia <https://github.com/dahlia>`_ `#4 <https://github.com/iamport/iamport-rest-client-python/pull/4>`_
+- 비인증 결제(onetime) 지원: `psy2848048 <https://github.com/psy2848048>`_ `#8 <https://github.com/iamport/iamport-rest-client-python/pull/8>`_
 
 
 할 일
 ======
 - 결제 목록 읽기
-- 비 인증 결제 지원
+- 비인증 결제 세부 기능 지원
 - 문서화
 - 기타 등등
