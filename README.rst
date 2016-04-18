@@ -43,7 +43,8 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
     from iamport import Iamport
 
     # 테스트 용
-    iamport = Iamport()
+    iamport = Iamport(='{테스트용 키}', imp_secret='{테스트 시크릿}')
+    # 테스트용 키와 시크릿은 tests/conftest.py 파일에 DEFAULT_TEST_IMP_KEY, DEFAULT_TEST_IMP_SECRET를 참고하세요.
 
     # 실제 상점 정보
     iamport = Iamport(imp_key='{발급받은 키}', imp_secret='{발급받은 시크릿}')
