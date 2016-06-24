@@ -91,13 +91,13 @@ class Iamport(object):
     def cancel_by_merchant_uid(self, merchant_uid, reason, **kwargs):
         payload = {'merchant_uid': merchant_uid, 'reason': reason}
         if kwargs:
-            payload = payload.update(kwargs)
+            payload.update(kwargs)
         return self._cancel(payload)
 
     def cancel_by_imp_uid(self, imp_uid, reason, **kwargs):
         payload = {'imp_uid': imp_uid, 'reason': reason}
         if kwargs:
-            payload = payload.update(kwargs)
+            payload.update(kwargs)
         return self._cancel(payload)
 
     def cancel(self, reason, **kwargs):
