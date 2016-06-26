@@ -13,3 +13,12 @@ def test_cancel(iamport):
     except Iamport.ResponseError as e:
         assert e.code == 1
         assert e.message == u'취소할 결제건이 존재하지 않습니다.'
+
+
+def test_partial_cancel(iamport):
+
+    try:
+        iamport.cancel('reason', imp_uid='nothing', amount=100)
+    except Iamport.ResponseError as e:
+        assert e.code == 1
+        assert e.message == u'취소할 결제건이 존재하지 않습니다.'
