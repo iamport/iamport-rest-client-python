@@ -22,3 +22,31 @@ def test_partial_cancel(iamport):
     except Iamport.ResponseError as e:
         assert e.code == 1
         assert e.message == u'취소할 결제건이 존재하지 않습니다.'
+
+
+def test_cancel_by_merchant_uid(iamport):
+
+    payload = {
+        'merchant_uid': 'any-merchant_uid',
+        'reason': 'any-reason',
+    }
+
+    try:
+        iamport.cancel(**payload)
+    except Iamport.ResponseError as e:
+        assert e.code == 1
+        assert e.message == u'취소할 결제건이 존재하지 않습니다.'
+
+
+def test_cancel_by_imp_uid(iamport):
+
+    payload = {
+        'imp_uid': 'any-imp_uid',
+        'reason': 'any-reason',
+    }
+
+    try:
+        iamport.cancel(**payload)
+    except Iamport.ResponseError as e:
+        assert e.code == 1
+        assert e.message == u'취소할 결제건이 존재하지 않습니다.'
