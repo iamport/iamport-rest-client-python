@@ -134,7 +134,7 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
 ======
 - 파이썬 3 지원, 테스트: `dahlia <https://github.com/dahlia>`_ `#4 <https://github.com/iamport/iamport-rest-client-python/pull/4>`_
 - 비인증 결제(onetime) 지원: `psy2848048 <https://github.com/psy2848048>`_ `#8 <https://github.com/iamport/iamport-rest-client-python/pull/8>`_
-
+- 부분 취소 지원:  `pcompassion <https://github.com/pcompassion>`_ `#10 <https://github.com/iamport/iamport-rest-client-python/pull/10>`_
 
 할 일
 ======
