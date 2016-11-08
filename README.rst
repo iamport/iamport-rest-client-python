@@ -129,6 +129,25 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
         pass
 
 
+저장된 빌링키로 재결제합니다.
+
+.. code-block:: python
+
+    # 테스트용 값
+    payload = {
+        'customer_uid': '{고객 아이디}',
+        'merchant_uid': '00000000',
+        'amount': 5000,
+    }
+    try:
+        response = iamport.pay_again(**payload)
+    except KeyError:
+        # 필수 값이 없을때 에러 처리
+        pass
+    except Iamport.ResponseError as e:
+        # 응답 에러 처리
+        pass
+
 
 기여
 ======
