@@ -80,6 +80,14 @@ class Iamport(object):
 
         return self._post(url, kwargs)
 
+    def pay_again(self, **kwargs):
+        url = '{}subscribe/payments/again'.format(self.imp_url)
+        for key in ['customer_uid', 'merchant_uid', 'amount']:
+            if key not in kwargs:
+                raise KeyError('Essential parameter is missing!: %s' % key)
+
+        return self._post(url, kwargs)
+
     def pay_foreign(self, **kwargs):
         url = '{}subscribe/payments/foreign'.format(self.imp_url)
         for key in ['merchant_uid', 'amount', 'card_number', 'expiry']:
