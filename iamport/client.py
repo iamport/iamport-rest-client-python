@@ -55,7 +55,6 @@ class Iamport(object):
         response = self.requests_session.delete(url, headers=headers, data=payload)
         return self.get_response(response)
 
-
     def find_by_merchant_uid(self, merchant_uid):
         url = '{}payments/find/{}'.format(self.imp_url, merchant_uid)
         return self._get(url)
