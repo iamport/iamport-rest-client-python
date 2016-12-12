@@ -123,3 +123,11 @@ class Iamport(object):
         status = response.get('status')
         response_amount = response.get('amount')
         return status == 'paid' and response_amount == amount
+
+    def get_billing_key(self, customer_uid):
+        url = '{0}subscribe/customers/{1}'.format(self.imp_url, customer_uid)
+        return self._get(url)
+
+    def delete_billing_key(self, customer_uid):
+        url = '{0}subscribe/customers/{1}'.format(self.imp_url, customer_uid)
+        return self._delete(url)
