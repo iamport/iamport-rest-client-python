@@ -149,6 +149,19 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
         pass
 
 
+개발환경 및 테스트 설정
+==========================
+macOS 기준 pyenv 설치 권장
+
+::
+
+    # pyenv 설치
+    brew install pyenv
+    pyenv install 2.7.12 3.4.5 3.5.2 pypy-5.6.0
+    pyenv local 2.7.12 3.4.5 3.5.2 pypy-5.6.0
+    pip install tox-pyenv detox
+    detox
+
 기여
 ======
 - 파이썬 3 지원, 테스트: `dahlia <https://github.com/dahlia>`_ `#4 <https://github.com/iamport/iamport-rest-client-python/pull/4>`_
