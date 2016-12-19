@@ -36,43 +36,30 @@ def test_billing_key(iamport):
 
 
 def test_set_billing_key(iamport):
-    payload_no_pwd2_digit = {
+    payload_no_pwd2_digit_expiry = {
         'amount': 0,
         'card_number': '0000-0000-0000-0000',
         'birth': '500203',
         'customer_id': 1000
     }
     try:
-        iamport.set_billing_key(**payload_no_pwd2_digit)
+        iamport.set_billing_key(**payload_no_pwd2_digit_expiry)
     except KeyError as e:
-        assert "Essential parameter is missing!: pwd2_digit" in str(e)
-        assert "Essential parameter is missing!: expiry" in str(e)
-
-    payload_no_card_number = {
-        'amount': 0,
-        'card_number': '0000-0000-0000-0000',
-        'expiry': '2019-03',
-        'birth': '500203',
-        'customer_id': 1000
-    }
-    try:
-        iamport.set_billing_key(**payload_no_card_number)
-    except KeyError as e:
-        assert "Essential parameter is missing!: card_number" in str(e)
+        assert "Essential parameter is missing!" in str(e)
 
     payload_not_full_with_pwd_2digit = {
         'amount': 0,
         'card_number': '4092-0230-1234-1234',
-        'expiry': '2019-03',
         'birth': '500203',
         'pwd_2digit': '19',
+        'customer_id': 1000
     }
     try:
         iamport.set_billing_key(**payload_not_full_with_pwd_2digit)
-    except iamport.ResponseError as e:
-        assert "Essential parameter is missing!: customer_id" in str(e)
+    except KeyError as e:
+        assert "Essential parameter is missing!" in str(e)
 
-    payload__full = {
+    payload_full = {
         'amount': 0,
         'card_number': '4092-0230-1234-1234',
         'expiry': '2019-03',
@@ -81,6 +68,6 @@ def test_set_billing_key(iamport):
         'customer_id': 1000
     }
     try:
-        iamport.set_billing_key(**payload__full)
+        iamport.set_billing_key(**payload_full)
     except iamport.ResponseError as e:
         assert u'카드정보 인증 및 빌키 발급에 실패하였습니다.' in e.message
