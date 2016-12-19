@@ -98,7 +98,7 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
     # 취소시 오류 예외처리(이미 취소된 결제는 에러가 발생함)
     try:
         response = iamport.cancel(u'취소하는 이유', imp_uid='{IMP UID}')
-    except Iamport.ResonseError as e:
+    except Iamport.ResponseError as e:
         print e.code
         print e.message  # 에러난 이유를 알 수 있음
 
