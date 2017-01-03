@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
-from iamport import Iamport
 
 
 def test_pay_foreign(iamport):
-
     payload = {
         'merchant_uid': 'uid',
         'amount': 100,
@@ -20,5 +18,5 @@ def test_pay_foreign(iamport):
 
     try:
         iamport.pay_foreign(**payload)
-    except Iamport.ResponseError as e:
+    except iamport.ResponseError as e:
         assert e.code == -1
