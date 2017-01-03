@@ -8,6 +8,10 @@ I'mport; REST Client
 .. image:: https://coveralls.io/repos/github/iamport/iamport-rest-client-python/badge.svg?branch=master
     :target: https://coveralls.io/github/iamport/iamport-rest-client-python?branch=master
 
+.. image:: https://codecov.io/gh/iamport/iamport-rest-client-python/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/iamport/iamport-rest-client-python
+
+
 Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
 
 * 이용 중 발생한 문제에 대해 책임지지 않습니다.
@@ -155,12 +159,17 @@ macOS 기준 pyenv 설치 권장
 
 ::
 
-    # pyenv 설치
+    # pyenv 준비
     brew install pyenv
     pyenv install 2.7.12 3.4.5 3.5.2 pypy-5.6.0
     pyenv local 2.7.12 3.4.5 3.5.2 pypy-5.6.0
+    # tox
     pip install tox-pyenv detox
     detox
+
+    # 커버리지 확인
+    pip install pytest-cov
+    python -m pytest tests/ --cov=./
 
 기여
 ======
