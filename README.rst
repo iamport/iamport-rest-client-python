@@ -8,6 +8,10 @@ I'mport; REST Client
 .. image:: https://coveralls.io/repos/github/iamport/iamport-rest-client-python/badge.svg?branch=master
     :target: https://coveralls.io/github/iamport/iamport-rest-client-python?branch=master
 
+.. image:: https://codecov.io/gh/iamport/iamport-rest-client-python/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/iamport/iamport-rest-client-python
+
+
 Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
 
 * 이용 중 발생한 문제에 대해 책임지지 않습니다.
@@ -27,6 +31,7 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
 1. 결제 정보 찾기
 2. 가격 확인
 3. 취소
+4. 비 인증 결제
 
 
 사용법
@@ -42,7 +47,8 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
     from iamport import Iamport
 
     # 테스트 용
-    iamport = Iamport()
+    iamport = Iamport(imp_key='{테스트용 키}', imp_secret='{테스트 시크릿}')
+    # 테스트용 키와 시크릿은 tests/conftest.py 파일에 DEFAULT_TEST_IMP_KEY, DEFAULT_TEST_IMP_SECRET를 참고하세요.
 
     # 실제 상점 정보
     iamport = Iamport(imp_key='{발급받은 키}', imp_secret='{발급받은 시크릿}')
@@ -96,19 +102,85 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
     # 취소시 오류 예외처리(이미 취소된 결제는 에러가 발생함)
     try:
         response = iamport.cancel(u'취소하는 이유', imp_uid='{IMP UID}')
-    except Iamport.ResonseError as e:
+    except Iamport.ResponseError as e:
         print e.code
         print e.message  # 에러난 이유를 알 수 있음
 
 
+비인증 결제
+-------------
+
+1회성 비인증 결제를 진행합니다.
+
+.. code-block:: python
+
+    # 테스트용 값
+    payload = {
+        'merchant_uid': '00000000',
+        'amount': 5000,
+        'card_number': '4092-0230-1234-1234',
+        'expiry': '2019-03',
+        'birth': '500203',
+        'pwd_2digit': '19'
+    }
+    try:
+        response = iamport.pay_onetime(**payload)
+    except KeyError:
+        # 필수 값이 없을때 에러 처리
+        pass
+    except Iamport.ResponseError as e:
+        # 응답 에러 처리
+        pass
+
+
+저장된 빌링키로 재결제합니다.
+
+.. code-block:: python
+
+    # 테스트용 값
+    payload = {
+        'customer_uid': '{고객 아이디}',
+        'merchant_uid': '00000000',
+        'amount': 5000,
+    }
+    try:
+        response = iamport.pay_again(**payload)
+    except KeyError:
+        # 필수 값이 없을때 에러 처리
+        pass
+    except Iamport.ResponseError as e:
+        # 응답 에러 처리
+        pass
+
+
+개발환경 및 테스트 설정
+==========================
+macOS 기준 pyenv 설치 권장
+
+::
+
+    # pyenv 준비
+    brew install pyenv
+    pyenv install 2.7.12 3.4.5 3.5.2 pypy-5.6.0
+    pyenv local 2.7.12 3.4.5 3.5.2 pypy-5.6.0
+    # tox
+    pip install tox-pyenv detox
+    detox
+
+    # 커버리지 확인
+    pip install pytest-cov
+    python -m pytest tests/ --cov=./
+
 기여
 ======
 - 파이썬 3 지원, 테스트: `dahlia <https://github.com/dahlia>`_ `#4 <https://github.com/iamport/iamport-rest-client-python/pull/4>`_
-
+- 비인증 결제(onetime) 지원: `psy2848048 <https://github.com/psy2848048>`_ `#8 <https://github.com/iamport/iamport-rest-client-python/pull/8>`_
+- 부분 취소 지원:  `pcompassion <https://github.com/pcompassion>`_ `#10 <https://github.com/iamport/iamport-rest-client-python/pull/10>`_
+- 재결제 지원: `Leop0ld <https://github.com/Leop0ld>`_ `#13 <https://github.com/iamport/iamport-rest-client-python/pull/13>`_
 
 할 일
 ======
 - 결제 목록 읽기
-- 비 인증 결제 지원
+- 비인증 결제 세부 기능 지원
 - 문서화
 - 기타 등등

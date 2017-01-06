@@ -2,7 +2,6 @@ language: python
 sudo: false
 python:
 - pypy
-- pypy3
 - 2.7
 - 3.4
 - 3.5
@@ -13,4 +12,5 @@ script:
 - flake8 .
 - tox
 after_success:
-  coveralls
+- coveralls
+- bash <(curl -s https://codecov.io/bash)
