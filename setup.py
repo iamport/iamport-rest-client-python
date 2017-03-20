@@ -11,12 +11,11 @@ def readme():
 
 setup(
     name='iamport-rest-client',
-    version='0.5.0',
+    version='0.5.2',
     packages=find_packages(),
     include_package_data=True,
     install_requires=install_requires,
     setup_requires=['pytest-runner'],
-    tests_requires=['pytest'],
     author='PerhapsSPY',
     author_email='perhapsspy@gmail.com',
     url='https://github.com/iamport/iamport-rest-client-python',
@@ -36,6 +35,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Software Development :: Libraries :: Python Modules',

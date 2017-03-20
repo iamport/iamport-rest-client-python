@@ -151,7 +151,7 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
 
 
 결제 사전 검증
--------------
+----------------
 
 결제될 내역에 대한 사전정보를 등록합니다
 
@@ -198,6 +198,10 @@ macOS 기준 pyenv 설치 권장
     # 커버리지 확인
     pip install pytest-cov
     python -m pytest tests/ --cov=./
+
+    # 문서 확인
+    pip install collective.checkdocs Pygments
+    python setup.py checkdocs
 
 기여
 ======
