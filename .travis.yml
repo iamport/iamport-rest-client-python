@@ -7,10 +7,9 @@ python:
 - 3.5
 - 3.6
 install:
-- pip install tox-travis flake8 coveralls
+- pip install tox-travis flake8
 script:
 - flake8 .
 - tox
 after_success:
-- coveralls
 - bash <(curl -s https://codecov.io/bash)
