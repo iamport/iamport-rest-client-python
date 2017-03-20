@@ -11,7 +11,7 @@ def readme():
 
 setup(
     name='iamport-rest-client',
-    version='0.4.1',
+    version='0.5.0',
     packages=find_packages(),
     include_package_data=True,
     install_requires=install_requires,

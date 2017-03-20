@@ -208,6 +208,7 @@ macOS 기준 pyenv 설치 권장
 - 비인증 결제(onetime) 지원: `psy2848048 <https://github.com/psy2848048>`_ `#8 <https://github.com/iamport/iamport-rest-client-python/pull/8>`_
 - 부분 취소 지원:  `pcompassion <https://github.com/pcompassion>`_ `#10 <https://github.com/iamport/iamport-rest-client-python/pull/10>`_
 - 재결제 지원: `Leop0ld <https://github.com/Leop0ld>`_ `#13 <https://github.com/iamport/iamport-rest-client-python/pull/13>`_
+- 결제사전검증 지원: `Bumsoo Kim <https://github.com/bskim45>`_ `#17 <https://github.com/iamport/iamport-rest-client-python/pull/17>`_
 
 할 일
 ======
