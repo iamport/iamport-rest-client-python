@@ -125,3 +125,14 @@ class Iamport(object):
         status = response.get('status')
         response_amount = response.get('amount')
         return status == 'paid' and response_amount == amount
+
+    def prepare(self, merchant_uid, amount):
+        url = '{}payments/prepare'.format(self.imp_url)
+        payload = {'merchant_uid': merchant_uid, 'amount': amount}
+        return self._post(url, payload)
+
+    def prepare_validate(self, merchant_uid, amount):
+        url = '{}payments/prepare/{}'.format(self.imp_url, merchant_uid)
+        response = self._get(url)
+        response_amount = response.get('amount')
+        return response_amount == amount

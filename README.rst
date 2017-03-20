@@ -153,6 +153,37 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
         pass
 
 
+결제 사전 검증
+-------------
+
+결제될 내역에 대한 사전정보를 등록합니다
+
+.. code-block:: python
+
+    # 테스트용 값
+    amount = 12000
+    mid = 'merchant_test'
+    try:
+        response = iamport.prepare(amount=amount, merchant_uid=mid)
+    except Iamport.ResponseError as e:
+        # 응답 에러 처리
+        pass
+
+
+등록된 사전정보를 확인합니다
+
+.. code-block:: python
+
+    # 테스트용 값
+    amount = 12000
+    mid = 'merchant_test'
+    try:
+        result = iamport.prepare_validate(merchant_uid=mid, amount=amount)
+    except Iamport.ResponseError as e:
+        # 응답 에러 처리
+        pass
+
+
 개발환경 및 테스트 설정
 ==========================
 macOS 기준 pyenv 설치 권장
