@@ -96,6 +96,24 @@ class Iamport(object):
 
         return self._post(url, kwargs)
 
+    def pay_schedule(self, **kwargs):
+        url = '{}subscribe/payments/schedule'.format(self.imp_url)
+        if 'customer_uid' not in kwargs:
+            raise KeyError('Essential parameter is missing!: %s' % 'customer_uid')
+        for key in ['schedule_at', 'merchant_uid', 'amount']:
+            for schedules in kwargs['schedules']:
+                if key not in schedules:
+                    raise KeyError('Essential parameter is missing!: %s' % key)
+
+        return self._post(url, kwargs)
+    
+    def pay_unschedule(self, **kwargs):
+        url = '{}subscribe/payments/unschedule'.format(self.imp_url)
+        if 'customer_uid' not in kwargs:
+            raise KeyError('Essential parameter is missing!: %s' % 'customer_uid')
+
+        return self._post(url, kwargs)
+
     def cancel_by_merchant_uid(self, merchant_uid, reason, **kwargs):
         payload = {'merchant_uid': merchant_uid, 'reason': reason}
         if kwargs:

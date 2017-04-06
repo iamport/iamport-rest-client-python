@@ -150,6 +150,54 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
         pass
 
 
+정기 결제를 예약합니다.
+
+.. code-block:: python
+
+	# 테스트용 값 schedule_at 은 UNIX time
+	payload = {
+		'customer_uid': '{ 고객 아이디 }',
+		'schedules': [
+		{
+			'merchant_uid': 'testmerchant_01',
+			'schedule_at': 1478150985,
+			'amount': 1004
+		},
+		{
+			'merhcant_uid': 'testmerchant_02',
+			'schedule_at': 1478150985,
+			'amount': 5000,
+			'name': '주문명',
+			'buyer_name': '주문자 명',
+			'buyer_email': '주문자 이메일',
+			'buyer_tel': '주문자 번호',
+			'buyer_addr': '주문자 주소',
+			'buyer_postcode': '주문자 우편번호'
+		}
+		]
+	}
+	try:
+		reponse = iamport.pay_schedule(**payload)
+	except Iamport.ResponseError as e:
+		print( str(e.code) + " " + e.message )
+		pass
+
+정기 결제 예약을 취소합니다.
+
+.. code-block:: python
+
+	# 테스트용 값 merchant_uid 가 누락되면 customer_uid 에 대한 결제예약정보 일괄취소
+	payload = {
+		'customer_uid': '{ 고객 아이디 }',
+		'merchant_uid': 'testmerchant_01'
+	}
+	try:
+		response = iamport.pay_unschedule(**payload)
+	except Iamport.ResponseError as e:
+		print( str(e.code) + " " + e.message )
+		pass
+
+
 결제 사전 검증
 ----------------
 
