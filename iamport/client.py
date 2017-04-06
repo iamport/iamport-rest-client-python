@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import requests
-
+import json
 __all__ = ['IAMPORT_API_URL', 'Iamport']
 
 IAMPORT_API_URL = 'https://api.iamport.kr/'
@@ -97,6 +97,8 @@ class Iamport(object):
         return self._post(url, kwargs)
 
     def pay_schedule(self, **kwargs):
+        headers = self.get_headers()
+        headers['Content-Type'] = 'application/json'
         url = '{}subscribe/payments/schedule'.format(self.imp_url)
         if 'customer_uid' not in kwargs:
             raise KeyError('Essential parameter is missing!: %s' % 'customer_uid')
@@ -105,7 +107,8 @@ class Iamport(object):
                 if key not in schedules:
                     raise KeyError('Essential parameter is missing!: %s' % key)
 
-        return self._post(url, kwargs)
+    response = self.requests_session.post(url, headers=headers, data=json.dumps(kwargs))
+    return self.get_response(response)
     
     def pay_unschedule(self, **kwargs):
         url = '{}subscribe/payments/unschedule'.format(self.imp_url)
