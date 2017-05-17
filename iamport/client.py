@@ -88,6 +88,18 @@ class Iamport(object):
 
         return self._post(url, kwargs)
 
+    def customer_create(self, **kwargs):
+        customer_uid = kwargs.get('customer_uid')
+        for key in ['customer_uid', 'card_number', 'expiry', 'birth']:
+            if key not in kwargs:
+                raise KeyError('Essential parameter is missing!: %s' % key)
+        url = '{}subscribe/customers/{}'.format(self.imp_url, customer_uid)
+        return self._post(url, kwargs)
+
+    def customer_get(self, customer_uid):
+        url = '{}subscribe/customers/{}'.format(self.imp_url, customer_uid)
+        return self._get(url)
+
     def pay_foreign(self, **kwargs):
         url = '{}subscribe/payments/foreign'.format(self.imp_url)
         for key in ['merchant_uid', 'amount', 'card_number', 'expiry']:
