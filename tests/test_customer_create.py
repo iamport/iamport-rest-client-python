@@ -25,4 +25,4 @@ def test_customer_create(iamport):
         iamport.customer_create(**payload_full)
     except iamport.ResponseError as e:
         assert e.code == -1
-        assert u'카드정보 인증에 실패하였습니다.' in e.message
+        assert u'카드정보 인증 및 빌키 발급에 실패하였습니다.' in e.message
