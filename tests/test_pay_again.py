@@ -23,4 +23,3 @@ def test_pay_again(iamport):
         iamport.pay_again(**payload_full)
     except iamport.ResponseError as e:
         assert e.code == 1
-        assert u'등록되지 않은 구매자입니다.' in e.message
