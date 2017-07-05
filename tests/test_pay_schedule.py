@@ -2,7 +2,7 @@
 import time
 
 
-def test_pay_schedule_with_fail_case(iamport):
+def test_pay_schedule(iamport):
     schedule_at = int(time.time() + 1000)
 
     payload_without_customer_uid = {
@@ -53,7 +53,7 @@ def test_pay_schedule_with_fail_case(iamport):
         'customer_uid': '00000000',
         'schedules': [
             {
-                'merchant_uid': 'qwertyui',
+                'merchant_uid': 'qwer!@#$',
                 'schedule_at': schedule_at,
                 'amount': 5000,
                 'name': '주문명',

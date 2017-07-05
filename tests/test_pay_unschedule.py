@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def test_pay_unschedule_with_fail_case(iamport):
+def test_pay_unschedule(iamport):
     payload_without_customer_uid = {
         # without 'customer_uid'
         'merchant_uid': '00000000',
