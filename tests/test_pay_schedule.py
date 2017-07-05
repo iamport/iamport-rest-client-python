@@ -9,7 +9,7 @@ def test_pay_schedule(iamport):
         # without 'customer_uid'
         'schedules': [
             {
-                'merchant_uid': '12345678',
+                'merchant_uid': 'pay_schedule_%s' % str(time.time()),
                 'schedule_at': schedule_at,
                 'amount': 2001,
                 'name': '주문명1',
@@ -53,7 +53,7 @@ def test_pay_schedule(iamport):
         'customer_uid': '00000000',
         'schedules': [
             {
-                'merchant_uid': 'qwer!@#$',
+                'merchant_uid': 'pay_schedule_%s' % str(time.time()),
                 'schedule_at': schedule_at,
                 'amount': 5000,
                 'name': '주문명',
