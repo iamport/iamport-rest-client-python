@@ -4,7 +4,7 @@
 def test_pay_onetime(iamport):
     # Without 'card_number'
     payload_notEnough = {
-        'merchant_uid': '00000000',
+        'merchant_uid': 'qwer1234',
         'amount': 5000,
         'expiry': '2019-03',
         'birth': '500203',
@@ -17,7 +17,7 @@ def test_pay_onetime(iamport):
         assert "Essential parameter is missing!: card_number" in str(e)
 
     payload_full = {
-        'merchant_uid': '00000000',
+        'merchant_uid': 'qwer1234',
         'amount': 5000,
         'card_number': '4092-0230-1234-1234',
         'expiry': '2019-03',
