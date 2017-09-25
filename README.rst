@@ -249,18 +249,21 @@ macOS 기준 pyenv 설치 권장
 
     # pyenv 준비
     brew install pyenv
-    pyenv install 2.7.12 3.4.5 3.5.2 pypy-5.6.0
-    pyenv local 2.7.12 3.4.5 3.5.2 pypy-5.6.0
+    pyenv install -s 2.7.13
+    pyenv install -s 3.4.7
+    pyenv install -s 3.5.4
+    pyenv install -s 3.6.2
+    pyenv install -s pypy-5.7.1
+    pyenv local 2.7.13 3.4.7 3.5.4 3.6.2 pypy-5.7.1
+    pip install pytest pytest-cov collective.checkdocs Pygments tox-pyenv
+
     # tox
-    pip install tox-pyenv detox
-    detox
+    tox
 
     # 커버리지 확인
-    pip install pytest-cov
     python -m pytest tests/ --cov=./
 
     # 문서 확인
-    pip install collective.checkdocs Pygments
     python setup.py checkdocs
 
 기여
