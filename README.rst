@@ -103,7 +103,9 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
     except Iamport.ResponseError as e:
         print e.code
         print e.message  # 에러난 이유를 알 수 있음
-
+    except Iamport.HttpError as http_error:
+        print http_error.code
+        print http_error.reason # HTTP not 200 에러난 이유를 알 수 있음
 
 비인증 결제
 -------------
@@ -129,7 +131,9 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
     except Iamport.ResponseError as e:
         # 응답 에러 처리
         pass
-
+    except Iamport.HttpError as http_error:
+        # HTTP not 200 응답 에러 처리
+        pass
 
 저장된 빌링키로 재결제합니다.
 
@@ -149,7 +153,9 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
     except Iamport.ResponseError as e:
         # 응답 에러 처리
         pass
-
+    except Iamport.HttpError as http_error:
+        # HTTP not 200 응답 에러 처리
+        pass
 
 정기 예약 결제
 ----------------
@@ -190,6 +196,9 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
     except Iamport.ResponseError as e:
         # 응답 에러 처리
         pass
+    except Iamport.HttpError as http_error:
+        # HTTP not 200 응답 에러 처리
+        pass
 
 정기 결제 예약을 취소합니다.
 
@@ -208,7 +217,9 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
     except Iamport.ResponseError as e:
         # 응답 에러 처리
         pass
-
+    except Iamport.HttpError as http_error:
+        # HTTP not 200 응답 에러 처리
+        pass
 
 결제 사전 검증
 ----------------
@@ -225,7 +236,9 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
     except Iamport.ResponseError as e:
         # 응답 에러 처리
         pass
-
+    except Iamport.HttpError as http_error:
+        # HTTP not 200 응답 에러 처리
+        pass
 
 등록된 사전정보를 확인합니다
 
@@ -238,6 +251,9 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
         result = iamport.prepare_validate(merchant_uid=mid, amount=amount)
     except Iamport.ResponseError as e:
         # 응답 에러 처리
+        pass
+    except Iamport.HttpError as http_error:
+        # HTTP not 200 응답 에러 처리
         pass
 
 
