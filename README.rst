@@ -289,9 +289,10 @@ macOS 기준 pyenv 설치 권장
 - 부분 취소 지원:  `pcompassion <https://github.com/pcompassion>`_ `#10 <https://github.com/iamport/iamport-rest-client-python/pull/10>`_
 - 재결제 지원: `Leop0ld <https://github.com/Leop0ld>`_ `#13 <https://github.com/iamport/iamport-rest-client-python/pull/13>`_
 - 결제사전검증 지원: `Bumsoo Kim <https://github.com/bskim45>`_ `#17 <https://github.com/iamport/iamport-rest-client-python/pull/17>`_
-- 비인증 결제예약/취소 지원:
+- 비인증 결제예약 및 취소 지원:
     - `forybm <https://github.com/forybm>`_ `#18 <https://github.com/iamport/iamport-rest-client-python/pull/18>`_
-    - `Leop0ld <https://github.com/Leop0ld>`_  `#21 <https://github.com/iamport/iamport-rest-client-python/pull/21>`_
+    - `Leop0ld <https://github.com/Leop0ld>`_ `#21 <https://github.com/iamport/iamport-rest-client-python/pull/21>`_
+- http 200 응답 개선:`Noh Seho <https://github.com/NohSeho>`_ `#24 <https://github.com/iamport/iamport-rest-client-python/pull/24>`_
 
 할 일
 ======
