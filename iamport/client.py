@@ -24,14 +24,15 @@ class Iamport(object):
             self.message = message
 
     class HttpError(Exception):
-        def __init__(self, code=None, reason=None):
+        def __init__(self, code=None, reason=None, message=None):
             self.code = code
             self.reason = reason
+            self.message = message
 
     @staticmethod
     def get_response(response):
         if response.status_code != requests.codes.ok:
-            raise Iamport.HttpError(response.status_code, response.reason)
+            raise Iamport.HttpError(response.status_code, response.reason, json.loads(response.text)["message"])
         result = response.json()
         if result['code'] != 0:
             raise Iamport.ResponseError(result.get('code'), result.get('message'))
