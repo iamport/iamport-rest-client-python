@@ -15,7 +15,7 @@ def test_pay_again(iamport):
 
     payload_full = {
         'customer_uid': '00000000',
-        'merchant_uid': '1234qwer',
+        'merchant_uid': '1234qwer2',
         'amount': 5000,
     }
 
