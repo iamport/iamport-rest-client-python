@@ -92,6 +92,19 @@ class Iamport(object):
 
         return self._post(url, kwargs)
 
+    def get_billing_key(self, customer_uid, **kwargs):
+        url = '{}subscribe/customers/{}'.format(self.imp_url, customer_uid)
+        for key in ['card_number', 'expiry', 'birth', 'pwd_2digit']:
+            if key not in kwargs:
+                raise KeyError('Essential parameter is missing!: %s' % key)
+
+        return self._post(url, kwargs)
+
+    def delete_billing_key(self, customer_uid):
+        url = '{}subscribe/customers/{}'.format(self.imp_url, customer_uid)
+
+        return self._delete(url)
+
     def pay_again(self, **kwargs):
         url = '{}subscribe/payments/again'.format(self.imp_url)
         for key in ['customer_uid', 'merchant_uid', 'amount']:
