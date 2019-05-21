@@ -107,6 +107,54 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
         print http_error.code
         print http_error.reason # HTTP not 200 에러난 이유를 알 수 있음
 
+구매자 빌링키 관리
+-------------
+
+빌링키를 서버에 등록합니다.
+
+.. code-block:: python
+
+    # 테스트용 값
+
+    customer_uid = 'kcrong_bank_1234'
+
+    payload = {
+        'card_number': '4092-0230-1234-1234',
+        'expiry': '2019-03',
+        'birth': '500203',
+        'pwd_2digit': '19'
+    }
+
+    try:
+        response = iamport.get_billing_key(customer_uid, **payload)
+    except KeyError:
+        # 필수 값이 없을때 에러 처리
+        pass
+    except Iamport.ResponseError as e:
+        # 응답 에러 처리
+        pass
+    except Iamport.HttpError as http_error:
+        # HTTP not 200 응답 에러 처리
+        pass
+
+
+빌링키를 서버에서 삭제합니다.
+
+.. code-block:: python
+
+    # 테스트용 값
+
+    customer_uid = 'kcrong_bank_1234'
+
+    try:
+        response = iamport.delete_billing_key(customer_uid)
+    except Iamport.ResponseError as e:
+        # 응답 에러 처리
+        pass
+    except Iamport.HttpError as http_error:
+        # HTTP not 200 응답 에러 처리
+        pass
+
 비인증 결제
 -------------
 
