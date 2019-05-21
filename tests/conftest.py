@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-import random
-import string
+import uuid
 
 from pytest import fixture
 
@@ -28,5 +27,5 @@ def iamport(request):
 
 
 @fixture
-def merchant_uid(length=10):
-    return ''.join(random.choice(string.ascii_lowercase) for _ in range(length))
+def merchant_uid():
+    return str(uuid.uuid4())
