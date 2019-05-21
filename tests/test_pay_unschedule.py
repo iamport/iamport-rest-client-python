@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-import time
 
 
-def test_pay_unschedule(iamport):
+def test_pay_unschedule(iamport, merchant_uid):
     payload_without_customer_uid = {
         # without 'customer_uid'
-        'merchant_uid': 'pay_unschedule_%s' % str(time.time()),
+        'merchant_uid': merchant_uid,
     }
 
     try:
@@ -15,7 +14,7 @@ def test_pay_unschedule(iamport):
 
     payload_full = {
         'customer_uid': '00000000',
-        'merchant_uid': 'pay_unschedule_%s' % str(time.time()),
+        'merchant_uid': merchant_uid,
     }
 
     try:

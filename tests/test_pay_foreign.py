@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 
-def test_pay_foreign(iamport):
+def test_pay_foreign(iamport, merchant_uid):
     payload = {
-        'merchant_uid': 'uid',
+        'merchant_uid': merchant_uid,
         'amount': 100,
         'card_number': 'card-number',
     }

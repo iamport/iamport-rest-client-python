@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import uuid
+
 from pytest import fixture
 
 from iamport import Iamport
@@ -22,3 +24,8 @@ def iamport(request):
     imp_key = request.config.getoption('--imp-key')
     imp_secret = request.config.getoption('--imp-secret')
     return Iamport(imp_key=imp_key, imp_secret=imp_secret)
+
+
+@fixture
+def merchant_uid():
+    return str(uuid.uuid4())

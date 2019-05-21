@@ -22,9 +22,9 @@ def test_partial_cancel(iamport):
         assert e.message == u'취소할 결제건이 존재하지 않습니다.'
 
 
-def test_cancel_by_merchant_uid(iamport):
+def test_cancel_by_merchant_uid(iamport, merchant_uid):
     payload = {
-        'merchant_uid': 'any-merchant_uid',
+        'merchant_uid': merchant_uid,
         'reason': 'any-reason',
     }
 
@@ -47,9 +47,9 @@ def test_cancel_without_merchant_uid(iamport):
         assert 'merchant_uid or imp_uid is required' in str(e)
 
 
-def test_cancel_by_merchant_uid_with_kwargs(iamport):
+def test_cancel_by_merchant_uid_with_kwargs(iamport, merchant_uid):
     payload = {
-        'merchant_uid': 'any-merchant_uid',
+        'merchant_uid': merchant_uid,
         'reason': 'any-reason',
         'amount': 1234,
     }
