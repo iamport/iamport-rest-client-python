@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 
-def test_pay_again(iamport):
+def test_pay_again(iamport, merchant_uid):
     # Without 'customer_uid'
     payload_notEnough = {
-        'merchant_uid': '1234qwer',
+        'merchant_uid': merchant_uid,
         'amount': 5000,
     }
 
@@ -15,7 +15,7 @@ def test_pay_again(iamport):
 
     payload_full = {
         'customer_uid': '00000000',
-        'merchant_uid': '1234qwer2',
+        'merchant_uid': merchant_uid,
         'amount': 5000,
     }
 

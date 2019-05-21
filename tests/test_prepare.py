@@ -1,15 +1,11 @@
 # -*- coding: utf-8 -*-
-import datetime
-import time
 
-
-def test_prepare(iamport):
+def test_prepare(iamport, merchant_uid):
     amount = 12000
-    mid = 'merchant_%d' % time.mktime(datetime.datetime.now().timetuple())
 
-    result = iamport.prepare(merchant_uid=mid, amount=amount)
+    result = iamport.prepare(merchant_uid=merchant_uid, amount=amount)
     assert result['amount'] == amount
-    assert result['merchant_uid'] == mid
+    assert result['merchant_uid'] == merchant_uid
 
-    result = iamport.prepare_validate(merchant_uid=mid, amount=amount)
+    result = iamport.prepare_validate(merchant_uid=merchant_uid, amount=amount)
     assert result

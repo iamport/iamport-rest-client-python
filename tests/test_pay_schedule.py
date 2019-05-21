@@ -2,14 +2,14 @@
 import time
 
 
-def test_pay_schedule(iamport):
+def test_pay_schedule(iamport, merchant_uid):
     schedule_at = int(time.time() + 1000)
 
     payload_without_customer_uid = {
         # without 'customer_uid'
         'schedules': [
             {
-                'merchant_uid': 'pay_schedule_%s' % str(time.time()),
+                'merchant_uid': merchant_uid,
                 'schedule_at': schedule_at,
                 'amount': 2001,
                 'name': '주문명1',
@@ -53,7 +53,7 @@ def test_pay_schedule(iamport):
         'customer_uid': '00000000',
         'schedules': [
             {
-                'merchant_uid': 'pay_schedule_%s' % str(time.time()),
+                'merchant_uid': merchant_uid,
                 'schedule_at': schedule_at,
                 'amount': 5000,
                 'name': '주문명',
