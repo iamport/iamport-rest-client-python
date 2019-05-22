@@ -92,7 +92,7 @@ class Iamport(object):
 
         return self._post(url, kwargs)
 
-    def get_billing_key(self, customer_uid, **kwargs):
+    def make_billing_key(self, customer_uid, **kwargs):
         url = '{}subscribe/customers/{}'.format(self.imp_url, customer_uid)
         for key in ['card_number', 'expiry', 'birth', 'pwd_2digit']:
             if key not in kwargs:

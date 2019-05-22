@@ -126,7 +126,7 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
     }
 
     try:
-        response = iamport.get_billing_key(customer_uid, **payload)
+        response = iamport.make_billing_key(customer_uid, **payload)
     except KeyError:
         # 필수 값이 없을때 에러 처리
         pass

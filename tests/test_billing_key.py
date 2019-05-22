@@ -12,7 +12,7 @@ def test_get_billding_key(iamport):
     test_customer_uid = 'test_customer_uid'
 
     try:
-        iamport.get_billing_key(test_customer_uid, **payload_notEnough)
+        iamport.make_billing_key(test_customer_uid, **payload_notEnough)
     except KeyError as e:
         assert "Essential parameter is missing!: card_number" in str(e)
 
@@ -24,7 +24,7 @@ def test_get_billding_key(iamport):
     }
 
     try:
-        iamport.get_billing_key(test_customer_uid, **payload_full)
+        iamport.make_billing_key(test_customer_uid, **payload_full)
     except iamport.ResponseError as e:
         assert e.code == -1
         assert u'유효기간 오류' in e.message
