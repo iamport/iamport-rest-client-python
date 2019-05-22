@@ -92,6 +92,11 @@ class Iamport(object):
 
         return self._post(url, kwargs)
 
+    def get_billing_key(self, customer_uid_list):
+        url = '{}subscribe/customers'.format(self.imp_url)
+
+        return self._get(url, {'customer_uid[]': customer_uid_list})
+
     def make_billing_key(self, customer_uid, **kwargs):
         url = '{}subscribe/customers/{}'.format(self.imp_url, customer_uid)
         for key in ['card_number', 'expiry', 'birth', 'pwd_2digit']:

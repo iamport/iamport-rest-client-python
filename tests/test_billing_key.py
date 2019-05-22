@@ -1,6 +1,29 @@
 # -*- coding: utf-8 -*-
 
 
+def test_get_billing_key(iamport):
+    invalid_customer_uid = 'invalid_key'
+
+    try:
+        iamport.get_billing_key(invalid_customer_uid)
+    except iamport.HttpError as e:
+        assert e.code == 404
+        assert e.reason == 'Not Found'
+
+    valid_customer_uid = 'customer_1234'
+
+    res = iamport.get_billing_key(valid_customer_uid)[0]
+
+    expected = {
+        'card_name': '현대카드',
+        'card_number': '43302887****9512',
+        'customer_uid': valid_customer_uid
+    }
+
+    for key in expected:
+        assert expected[key] == res[key]
+
+
 def test_make_billing_key(iamport):
     # Without 'card_number'
     payload_notEnough = {

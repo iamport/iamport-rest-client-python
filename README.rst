@@ -110,6 +110,24 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
 구매자 빌링키 관리
 ------------------
 
+빌링키를 조회합니다.
+
+.. code-block:: python
+
+    # 테스트용 값
+
+    customer_uid = 'customer_1234'
+
+    try:
+        response = iamport.get_billing_key(customer_uid, **payload)
+    except Iamport.ResponseError as e:
+        # 응답 에러 처리
+        pass
+    except Iamport.HttpError as http_error:
+        # HTTP not 200 응답 에러 처리
+        pass
+
+
 빌링키를 서버에 등록합니다.
 
 .. code-block:: python
