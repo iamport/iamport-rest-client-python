@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def test_make_billding_key(iamport):
+def test_make_billing_key(iamport):
     # Without 'card_number'
     payload_notEnough = {
         'expiry': '2019-03',
