@@ -265,12 +265,13 @@ macOS 기준 pyenv 설치 권장
 
     # pyenv 준비
     brew install pyenv
-    pyenv install -s 2.7.13
-    pyenv install -s 3.4.7
-    pyenv install -s 3.5.4
-    pyenv install -s 3.6.2
+    pyenv install -s 2.7.17
+    pyenv install -s 3.5.8
+    pyenv install -s 3.6.9
+    pyenv install -s 3.7.5
+    pyenv install -s 3.8.0
     pyenv install -s pypy-5.7.1
-    pyenv local 2.7.13 3.4.7 3.5.4 3.6.2 pypy-5.7.1
+    pyenv local 2.7.17 3.5.8 3.6.9 3.7.5 3.8.0 pypy-5.7.1
     pip install pytest pytest-cov collective.checkdocs Pygments tox-pyenv
 
     # tox
@@ -293,6 +294,10 @@ macOS 기준 pyenv 설치 권장
     - `forybm <https://github.com/forybm>`_ `#18 <https://github.com/iamport/iamport-rest-client-python/pull/18>`_
     - `Leop0ld <https://github.com/Leop0ld>`_ `#21 <https://github.com/iamport/iamport-rest-client-python/pull/21>`_
 - http 200 응답 개선:`Noh Seho <https://github.com/NohSeho>`_ `#24 <https://github.com/iamport/iamport-rest-client-python/pull/24>`_
+- 빌링키 조회 함수 추가
+    - `james-song <https://github.com/james-song>`_ `#30 <https://github.com/iamport/iamport-rest-client-python/pull/30>`_
+    - `pcompassion <https://github.com/pcompassion>`_ `#20 <https://github.com/iamport/iamport-rest-client-python/pull/20>`_
+    - `UrangUrang <https://github.com/UrangUrang>`_ `#14 <https://github.com/iamport/iamport-rest-client-python/pull/14>`_
 
 할 일
 ======
