@@ -1,17 +1,24 @@
 language: python
 sudo: false
-python:
-- pypy
-- 2.7
-- 3.4
-- 3.5
-- 3.6
+jobs:
+  includes:
+  - python: pypy
+    env: RUN_MYPY=false
+  - python: 2.7
+    env: RUN_MYPY=false
+  - python: 3.4
+    env: RUN_MYPY=false
+  - python: 3.5
+    env: RUN_MYPY=true
+  - python: 3.6
+    env: RUN_MYPY=true
 install:
-- pip install tox-travis flake8 collective.checkdocs Pygments mypy
+- pip install tox-travis flake8 collective.checkdocs Pygments
+- $RUN_MYPY && pip install mypy || true
 script:
 - flake8 .
 - python setup.py checkdocs
 - tox
-- mypy iamport
+- $RUN_MYPY && mypy iamport || true
 after_success:
 - bash <(curl -s https://codecov.io/bash)
