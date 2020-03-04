@@ -23,6 +23,28 @@ setup(
     long_description=readme(),
     license='MIT',
     zip_safe=False,
+    data_files=[
+        (
+            'shared/typehints/python2.7',
+            ['iamport/client.pyi'],
+        ),
+        (
+            'shared/typehints/python3.5',
+            ['iamport/client.pyi'],
+        ),
+        (
+            'shared/typehints/python3.6',
+            ['iamport/client.pyi'],
+        ),
+        (
+            'shared/typehints/python3.7',
+            ['iamport/client.pyi'],
+        ),
+        (
+            'shared/typehints/python3.8',
+            ['iamport/client.pyi'],
+        ),
+    ],
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Environment :: Web Environment',
