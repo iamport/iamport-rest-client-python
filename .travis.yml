@@ -7,10 +7,11 @@ python:
 - 3.5
 - 3.6
 install:
-- pip install tox-travis flake8 collective.checkdocs Pygments
+- pip install tox-travis flake8 collective.checkdocs Pygments mypy
 script:
 - flake8 .
 - python setup.py checkdocs
 - tox
+- mypy iamport
 after_success:
 - bash <(curl -s https://codecov.io/bash)
