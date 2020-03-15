@@ -41,7 +41,7 @@ class Iamport(object):
         url = '{}users/getToken'.format(self.imp_url)
         payload = {'imp_key': self.imp_key,
                    'imp_secret': self.imp_secret}
-        response = self.requests_session.post(url, data=payload)
+        response = self.requests_session.post(url, headers={'Content-Type': 'application/json'}, data=json.dumps(payload))
         return self.get_response(response).get('access_token')
 
     def get_headers(self):
@@ -54,7 +54,8 @@ class Iamport(object):
 
     def _post(self, url, payload=None):
         headers = self.get_headers()
-        response = self.requests_session.post(url, headers=headers, data=payload)
+        headers['Content-Type'] = 'application/json'
+        response = self.requests_session.post(url, headers=headers, data=json.dumps(payload))
         return self.get_response(response)
 
     def find_by_merchant_uid(self, merchant_uid):
@@ -126,8 +127,7 @@ class Iamport(object):
                 if key not in schedules:
                     raise KeyError('Essential parameter is missing!: %s' % key)
 
-        response = self.requests_session.post(url, headers=headers, data=json.dumps(kwargs))
-        return self.get_response(response)
+        return self._post(url, kwargs)
 
     def pay_unschedule(self, **kwargs):
         url = '{}subscribe/payments/unschedule'.format(self.imp_url)
