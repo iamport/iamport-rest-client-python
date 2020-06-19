@@ -57,6 +57,11 @@ class Iamport(object):
         headers['Content-Type'] = 'application/json'
         response = self.requests_session.post(url, headers=headers, data=json.dumps(payload))
         return self.get_response(response)
+    
+    def _delete(self, url):
+        headers = self.get_headers()
+        response = self.requests_session.delete(url, headers=headers)
+        return self.get_response(response)
 
     def find_by_merchant_uid(self, merchant_uid):
         url = '{}payments/find/{}'.format(self.imp_url, merchant_uid)
@@ -176,3 +181,7 @@ class Iamport(object):
         response = self._get(url)
         response_amount = response.get('amount')
         return response_amount == amount
+    
+    def revoke_vbank_by_imp_uid(self, imp_uid):
+        url = '{}vbanks/{}'.format(self.imp_url, imp_uid)
+        return self._delete(url)
