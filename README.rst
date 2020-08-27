@@ -30,6 +30,7 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
 3. 취소
 4. 비 인증 결제
 5. 정기 예약 결제
+6. 본인인증결과 조회 및 삭제
 
 
 사용법
@@ -256,6 +257,34 @@ Python 사용자를 위한 아임포트 REST API 연동 모듈입니다.
         # HTTP not 200 응답 에러 처리
         pass
 
+본인인증 결과 조회 및 관리
+----------------
+
+본인인증결과를 조회합니다.
+
+.. code-block:: python
+    
+    try:
+        response = iamport.find_certification(imp_uid='{IMP UID}')
+    except Iamport.ResponseError as e:
+        # 응답 에러 처리
+        pass
+    except Iamport.HttpError as http_error:
+        # HTTP not 200 응답 에러 처리
+        pass
+
+본인인증결과를 아임포트에서 삭제합니다.
+
+.. code-block:: python
+    
+    try:
+        response = iamport.cancel_certification(imp_uid='{IMP UID}')
+    except Iamport.ResponseError as e:
+        # 응답 에러 처리
+        pass
+    except Iamport.HttpError as http_error:
+        # HTTP not 200 응답 에러 처리
+        pass        
 
 개발환경 및 테스트 설정
 ==========================
