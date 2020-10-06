@@ -28,6 +28,14 @@ class Iamport(object):
             self.code = code
             self.reason = reason
 
+    class NeedEssentialParameterException(Exception):
+        def __init__(self, key):
+            self.message = 'Essential parameter is missing!: {}'.format(key)
+    
+    class UndefinedParameterException(Exception):
+        def __init__(self, key):
+            self.message = 'This parameter is not defined in this method. Please check your input: {}'.format(key)
+
     @staticmethod
     def get_response(response):
         if response.status_code != requests.codes.ok:
@@ -84,6 +92,15 @@ class Iamport(object):
     def _cancel(self, payload):
         url = '{}payments/cancel'.format(self.imp_url)
         return self._post(url, payload)
+
+    def _args_check(self, kwargs_set, essential_keys_list, whole_keys_list):
+        for key in essential_keys_list:
+            if key not in kwargs_set:
+                raise IamportNeedEssentialParameterException(key)
+
+        for key in kwargs_set:
+            if key not in whole_keys_list:
+                raise IamportUndefinedParameterException(key)
 
     def pay_onetime(self, **kwargs):
         url = '{}subscribe/payments/onetime'.format(self.imp_url)

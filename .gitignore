@@ -110,4 +110,5 @@ crashlytics-build.properties
 .mypy_cache/
 .python-version
 venv/
+*.swp
 
