@@ -3,6 +3,11 @@
 import json
 import requests
 
+from .protobuf_messages import payment_pb2
+from .protobuf_messages import subscribe_pb2
+
+from google.protobuf.json_format import MessageToJson
+
 __all__ = ['IAMPORT_API_URL', 'Iamport']
 
 IAMPORT_API_URL = 'https://api.iamport.kr/'
@@ -31,10 +36,9 @@ class Iamport(object):
     class NeedEssentialParameterException(Exception):
         def __init__(self, key):
             self.message = 'Essential parameter is missing!: {}'.format(key)
-    
-    class UndefinedParameterException(Exception):
-        def __init__(self, key):
-            self.message = 'This parameter is not defined in this method. Please check your input: {}'.format(key)
+
+        def __str__(self):
+            return self.message
 
     @staticmethod
     def get_response(response):
@@ -49,7 +53,11 @@ class Iamport(object):
         url = '{}users/getToken'.format(self.imp_url)
         payload = {'imp_key': self.imp_key,
                    'imp_secret': self.imp_secret}
-        response = self.requests_session.post(url, headers={'Content-Type': 'application/json'}, data=json.dumps(payload))
+        response = self.requests_session.post(
+            url,
+            headers={'Content-Type': 'application/json'},
+            data=json.dumps(payload)
+        )
         return self.get_response(response).get('access_token')
 
     def get_headers(self):
@@ -65,11 +73,19 @@ class Iamport(object):
         headers['Content-Type'] = 'application/json'
         response = self.requests_session.post(url, headers=headers, data=json.dumps(payload))
         return self.get_response(response)
-    
+
     def _delete(self, url):
         headers = self.get_headers()
         response = self.requests_session.delete(url, headers=headers)
         return self.get_response(response)
+
+    @staticmethod
+    def required_args_check(kwargs_set, essential_keys_list):
+        for key in essential_keys_list:
+            if key not in kwargs_set:
+                raise Iamport.NeedEssentialParameterException(key)
+
+        # Wrong name of the parameter detects from protobuf
 
     def find_by_merchant_uid(self, merchant_uid):
         url = '{}payments/find/{}'.format(self.imp_url, merchant_uid)
@@ -92,15 +108,6 @@ class Iamport(object):
     def _cancel(self, payload):
         url = '{}payments/cancel'.format(self.imp_url)
         return self._post(url, payload)
-
-    def _args_check(self, kwargs_set, essential_keys_list, whole_keys_list):
-        for key in essential_keys_list:
-            if key not in kwargs_set:
-                raise IamportNeedEssentialParameterException(key)
-
-        for key in kwargs_set:
-            if key not in whole_keys_list:
-                raise IamportUndefinedParameterException(key)
 
     def pay_onetime(self, **kwargs):
         url = '{}subscribe/payments/onetime'.format(self.imp_url)
@@ -198,7 +205,7 @@ class Iamport(object):
         response = self._get(url)
         response_amount = response.get('amount')
         return response_amount == amount
-    
+
     def revoke_vbank_by_imp_uid(self, imp_uid):
         url = '{}vbanks/{}'.format(self.imp_url, imp_uid)
         return self._delete(url)
@@ -210,3 +217,17 @@ class Iamport(object):
     def cancel_certification(self, imp_uid):
         url = '{}certifications/{}'.format(self.imp_url, imp_uid)
         return self._delete(url)
+
+    ######################
+    # Protobuf based API
+    ######################
+
+    def pay_onetime_protobuf(self, **kwargs):
+        required_params = ['merchant_uid', 'amount', 'card_number', 'expiry', 'birth']
+        self.required_args_check(kwargs, required_params)
+
+        url = '{}subscribe/payments/onetime'.format(self.imp_url)
+        msg = subscribe_pb2.OnetimePaymentRequest(**kwargs)
+        # print(json.loads(MessageToJson(msg, preserving_proto_field_name=True)))
+        return self._post(url, json.loads(MessageToJson(msg, preserving_proto_field_name=True)))
+
