@@ -228,6 +228,6 @@ class Iamport(object):
 
         url = '{}subscribe/payments/onetime'.format(self.imp_url)
         msg = subscribe_pb2.OnetimePaymentRequest(**kwargs)
-        # print(json.loads(MessageToJson(msg, preserving_proto_field_name=True)))
-        return self._post(url, json.loads(MessageToJson(msg, preserving_proto_field_name=True)))
+        resp = self._post(url, json.loads(MessageToJson(msg, preserving_proto_field_name=True)))
+        return subscribe_pb2.OnetimePaymentResponse(**resp)
 
