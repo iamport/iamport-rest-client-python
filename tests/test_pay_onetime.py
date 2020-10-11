@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from iamport.exceptions import ResponseError, NeedEssentialParameterException
+
 
 def test_pay_onetime(iamport):
     # Without 'card_number'
@@ -27,7 +29,7 @@ def test_pay_onetime(iamport):
 
     try:
         iamport.pay_onetime(**payload_full)
-    except iamport.ResponseError as e:
+    except ResponseError as e:
         assert e.code == -1
 
         # Message assertion cannot be used due to another type of message
@@ -47,7 +49,7 @@ def test_pay_onetime_protobuf(iamport):
 
     try:
         iamport.pay_onetime_protobuf(**payload_notEnough)
-    except iamport.NeedEssentialParameterException as e:
+    except NeedEssentialParameterException as e:
         assert "Essential parameter is missing!: card_number" in str(e)
 
     # Full parameter but wrong type
@@ -78,7 +80,7 @@ def test_pay_onetime_protobuf(iamport):
 
     try:
         iamport.pay_onetime_protobuf(**payload_full)
-    except iamport.ResponseError as e:
+    except ResponseError as e:
         assert e.code == -1
 
         # Message assertion cannot be used due to another type of message

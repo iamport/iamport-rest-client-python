@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import time
+from iamport.exceptions import ResponseError
 
 
 def test_pay_schedule(iamport):
@@ -68,6 +69,6 @@ def test_pay_schedule(iamport):
 
     try:
         iamport.pay_schedule(**payload_full)
-    except iamport.ResponseError as e:
+    except ResponseError as e:
         assert e.code == 1
         assert u'등록되지 않은 구매자입니다.' in e.message

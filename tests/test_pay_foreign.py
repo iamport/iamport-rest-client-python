@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from iamport.exceptions import ResponseError
+
 
 def test_pay_foreign(iamport):
     payload = {
@@ -18,5 +20,5 @@ def test_pay_foreign(iamport):
 
     try:
         iamport.pay_foreign(**payload)
-    except iamport.ResponseError as e:
+    except ResponseError as e:
         assert e.code == -1

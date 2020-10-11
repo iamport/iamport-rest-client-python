@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from iamport.exceptions import ResponseError
 
 
 def test_pay_again(iamport):
@@ -21,5 +22,5 @@ def test_pay_again(iamport):
 
     try:
         iamport.pay_again(**payload_full)
-    except iamport.ResponseError as e:
+    except ResponseError as e:
         assert e.code == -1
