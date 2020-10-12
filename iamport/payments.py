@@ -1,6 +1,4 @@
 from iamport.common import _Common
-from iamport.protobuf_messages import payment_pb2
-from google.protobuf.json_format import MessageToJson
 
 
 class Payments(_Common):

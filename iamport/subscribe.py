@@ -73,5 +73,52 @@ class Subscribe(_Common):
         url = '{}subscribe/payments/onetime'.format(self.imp_url)
         msg = subscribe_pb2.OnetimePaymentRequest(**kwargs)
         resp = self._post(url, json.loads(MessageToJson(msg, preserving_proto_field_name=True)))
-        return subscribe_pb2.OnetimePaymentResponse(**resp)
+        return subscribe_pb2.PaymentResponse(**resp)
+
+    def pay_again_protobuf(self, **kwargs):
+        required_params = ['customer_uid', 'merchant_uid', 'amount', 'name']
+        self._required_args_check(kwargs, required_params)
+
+        url = '{}subscribe/payments/again'.format(self.imp_url)
+        msg = subscribe_pb2.AgainPaymentRequest(**kwargs)
+        resp = self._post(url, json.loads(MessageToJson(msg, preserving_proto_field_name=True)))
+        return subscribe_pb2.PaymentResponse(**resp)
+
+    def pay_schedule_protobuf(self, **kwargs):
+        required_params = ['customer_uid', 'schedules']
+        self._required_args_check(kwargs, required_params)
+
+        headers = self._get_headers()
+        headers['Content-Type'] = 'application/json'
+        url = '{}subscribe/payments/schedule'.format(self.imp_url)
+        msg = subscribe_pb2.SchedulePayemntRequest(**kwargs)
+        resp = self._post(url, json.loads(MessageToJson(msg, preserving_proto_field_name=True)))
+        return [subscribe_pb2.UnitSchedulePaymentResponse(**unit_resp) for unit_resp in resp]
+
+    def pay_unschedule_protobuf(self, **kwargs):
+        required_params = ['customer_uid']
+        self._required_args_check(kwargs, required_params)
+
+        url = '{}subscribe/payments/unschedule'.format(self.imp_url)
+        msg = subscribe_pb2.UnscheduelPaymentRequest(**kwargs)
+        resp = self._post(url, json.loads(MessageToJson(msg, preserving_proto_field_name=True)))
+        return [subscribe_pb2.UnitSchedulePaymentResponse(**unit_resp) for unit_resp in resp]
+
+    def get_scheduled_payment_list_by_merchant_uid(self, **kwargs):
+        required_params = ['merchant_uid']
+        self._required_args_check(kwargs, required_params)
+
+        msg = subscribe_pb2.GetPaymentScheduleRequest(**kwargs)
+        url = '{}subscribe/payments/schedule/{}'.format(self.imp_url, msg.merchant_uid)
+        resp = self._get(url)
+        return subscribe_pb2.UnitSchedulePaymentResponse(**resp)
+
+    def get_scheduled_payment_list_by_customer_uid(self, **kwargs):
+        required_params = ['customer_uid']
+        self._required_args_check(kwargs, required_params)
+
+        msg = subscribe_pb2.GetPaymentScheduleByCustomerRequest(**kwargs)
+        url = '{}subscribe/payments/schedule/customers/{}'.format(self.imp_url, msg.customer_uid)
+        resp = self._get(url, payload=json.loads(MessageToJson(msg, preserving_proto_field_name=True)))
+        return subscribe_pb2.NestedGetPaymentScheduleByCustomerResponse(**resp)
 

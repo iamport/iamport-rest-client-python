@@ -24,3 +24,18 @@ def test_pay_again(iamport):
         iamport.pay_again(**payload_full)
     except ResponseError as e:
         assert e.code == -1
+
+
+def test_pay_again_protobuf(iamport):
+    payload_full = {
+        'name': 'test_product',
+        'customer_uid': '00000000',
+        'merchant_uid': '1234qwer',
+        'amount': 5000
+    }
+
+    try:
+        iamport.pay_again_protobuf(**payload_full)
+    except ResponseError as e:
+        assert e.code == -1
+

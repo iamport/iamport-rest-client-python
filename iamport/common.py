@@ -38,9 +38,9 @@ class _Common:
         response = self.requests_session.post(url, headers=headers, data=json.dumps(payload))
         return self._get_response(response)
 
-    def _delete(self, url):
+    def _delete(self, url, payload=None):
         headers = self._get_headers()
-        response = self.requests_session.delete(url, headers=headers)
+        response = self.requests_session.delete(url, headers=headers, params=payload)
         return self._get_response(response)
 
     def _required_args_check(self, kwargs_set, essential_keys_list):

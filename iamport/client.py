@@ -4,13 +4,14 @@ import requests
 from iamport.certifications import Certifications
 from iamport.payments import Payments
 from iamport.subscribe import Subscribe
+from iamport.subscribe_customers import Subscribe_customers
 from iamport.vbanks import Vbanks
 
 __all__ = ['IAMPORT_API_URL', 'Iamport']
 IAMPORT_API_URL = 'https://api.iamport.kr/'
 
 
-class Iamport(Certifications, Payments, Subscribe, Vbanks):
+class Iamport(Certifications, Payments, Subscribe, Vbanks, Subscribe_customers):
     def __init__(self, imp_key, imp_secret, imp_url=IAMPORT_API_URL):
         self.imp_key = imp_key
         self.imp_secret = imp_secret
