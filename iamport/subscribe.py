@@ -1,7 +1,7 @@
 import json
 
 from iamport.common import _Common
-from iamport.protobuf_messages import subscribe_pb2
+from iamport.protobuf_messages.subscribe import subscribe_pb2
 from google.protobuf.json_format import MessageToJson
 
 
@@ -120,5 +120,5 @@ class Subscribe(_Common):
         msg = subscribe_pb2.GetPaymentScheduleByCustomerRequest(**kwargs)
         url = '{}subscribe/payments/schedule/customers/{}'.format(self.imp_url, msg.customer_uid)
         resp = self._get(url, payload=json.loads(MessageToJson(msg, preserving_proto_field_name=True)))
-        return subscribe_pb2.NestedGetPaymentScheduleByCustomerResponse(**resp)
+        return subscribe_pb2.NestedGetPaymentScheduleByCustomerData(**resp)
 

@@ -13,12 +13,11 @@ jobs:
   - python: 3.6
     env: RUN_MYPY=true
 install:
-- pip install tox-travis flake8 collective.checkdocs Pygments
+- pip install pytest-runner pytest flake8 collective.checkdocs Pygments coverage tox-travis flake8 collective.checkdocs Pygments
 - $RUN_MYPY && pip install mypy || true
 script:
-- flake8 .
-- python setup.py checkdocs
-- tox
+- coverage run setup.py test
+- flake8 --ignore W391,F401 --exclude subscribe_pb2.py,subscribe_customers_pb2.py,payment_pb2.py,escrow_pb2.py,token_pb2.py iamport/ tests/
 - $RUN_MYPY && mypy iamport || true
 after_success:
 - bash <(curl -s https://codecov.io/bash)

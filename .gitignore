@@ -111,4 +111,5 @@ crashlytics-build.properties
 .python-version
 venv/
 *.swp
+protobuf_importpath_change.py
 

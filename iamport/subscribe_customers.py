@@ -1,8 +1,8 @@
 import json
 
 from iamport.common import _Common
-from iamport.protobuf_messages import subscribe_customers_pb2 as subscribe_customers
-from iamport.protobuf_messages import subscribe_pb2
+from iamport.protobuf_messages.subscribe_customers import subscribe_customers_pb2 as subscribe_customers
+from iamport.protobuf_messages.subscribe import subscribe_pb2
 from google.protobuf.json_format import MessageToJson
 
 
@@ -52,7 +52,7 @@ class Subscribe_customers(_Common):
         msg = subscribe_customers.GetPaidByBillingKeyListRequest(**kwargs)
         url = '{}subscribe/customers/{}/payments'.format(self.imp_url, msg.customer_uid)
         resp = self._get(url, payload=json.loads(MessageToJson(msg, preserving_proto_field_name=True)))
-        return subscribe_customers.NestedGetPaidByBillingKeyListResponse(**resp)
+        return subscribe_customers.NestedGetPaidByBillingKeyListData(**resp)
 
     def get_scheduled_payment_by_customer_list(self, **kwargs):
         required_params = ['customer_uid', 'from', 'to']
@@ -61,5 +61,5 @@ class Subscribe_customers(_Common):
         msg = subscribe_pb2.GetPaymentScheduleByCustomerRequest(**kwargs)
         url = '{}subscribe/customers/{}/schedules'.format(self.imp_url, msg.customer_uid)
         resp = self._get(url, payload=json.loads(MessageToJson(msg, preserving_proto_field_name=True)))
-        return subscribe_pb2.NestedGetPaymentScheduleByCustomerResponse(**resp)
+        return subscribe_customers.NestedGetPaidByBillingKeyListData(**resp)
 
