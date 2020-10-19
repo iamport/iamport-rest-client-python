@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
 import codecs
-install_requires = ['requests']
+install_requires = ['requests', 'protobuf']
 
 
 def readme():

@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 import pytest
 
+from iamport.exceptions import ResponseError
+
 
 def test_cancel(iamport):
     with pytest.raises(TypeError):
         iamport.cancel(imp_uid='nothing')
-    with pytest.raises(iamport.ResponseError):
+    with pytest.raises(ResponseError):
         iamport.cancel('reason', imp_uid='nothing')
     try:
         iamport.cancel('reason', imp_uid='nothing')
-    except iamport.ResponseError as e:
+    except ResponseError as e:
         assert e.code == 1
         assert e.message == u'취소할 결제건이 존재하지 않습니다.'
 
@@ -17,7 +19,7 @@ def test_cancel(iamport):
 def test_partial_cancel(iamport):
     try:
         iamport.cancel('reason', imp_uid='nothing', amount=100)
-    except iamport.ResponseError as e:
+    except ResponseError as e:
         assert e.code == 1
         assert e.message == u'취소할 결제건이 존재하지 않습니다.'
 
@@ -30,7 +32,7 @@ def test_cancel_by_merchant_uid(iamport):
 
     try:
         iamport.cancel(**payload)
-    except iamport.ResponseError as e:
+    except ResponseError as e:
         assert e.code == 1
         assert e.message == u'취소할 결제건이 존재하지 않습니다.'
 
@@ -56,7 +58,7 @@ def test_cancel_by_merchant_uid_with_kwargs(iamport):
 
     try:
         iamport.cancel(**payload)
-    except iamport.ResponseError as e:
+    except ResponseError as e:
         assert e.code == 1
         assert e.message == u'취소할 결제건이 존재하지 않습니다.'
 
@@ -69,6 +71,7 @@ def test_cancel_by_imp_uid(iamport):
 
     try:
         iamport.cancel(**payload)
-    except iamport.ResponseError as e:
+    except ResponseError as e:
         assert e.code == 1
         assert e.message == u'취소할 결제건이 존재하지 않습니다.'
+

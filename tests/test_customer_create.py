@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
+from iamport.exceptions import ResponseError
+
 
 def test_customer_create(iamport):
     # Without 'card_number'
@@ -21,7 +23,7 @@ def test_customer_create(iamport):
         'card_number': '4092-0230-1234-1234',
     }
 
-    with pytest.raises(iamport.ResponseError) as e:
+    with pytest.raises(ResponseError) as e:
         iamport.customer_create(**payload_full)
         assert e.code == -1
         assert u'카드정보 인증 및 빌키 발급에 실패하였습니다.' in e.message

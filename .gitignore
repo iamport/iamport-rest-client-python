@@ -110,4 +110,6 @@ crashlytics-build.properties
 .mypy_cache/
 .python-version
 venv/
+*.swp
+protobuf_importpath_change.py
 
