@@ -45,7 +45,7 @@ class Iamport(object):
         return self.get_response(response).get('access_token')
 
     def get_headers(self):
-        return {'X-ImpTokenHeader': self._get_token()}
+        return {'Authorization': self._get_token()}
 
     def _get(self, url, payload=None):
         headers = self.get_headers()
