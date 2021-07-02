@@ -63,6 +63,10 @@ class Iamport(object):
         response = self.requests_session.delete(url, headers=headers)
         return self.get_response(response)
 
+    def find_by_status(self, status, **params):
+        url = '{}payments/status/{}'.format(self.imp_url, status)
+        return self._get(url, params=params)
+
     def find_by_merchant_uid(self, merchant_uid):
         url = '{}payments/find/{}'.format(self.imp_url, merchant_uid)
         return self._get(url)
