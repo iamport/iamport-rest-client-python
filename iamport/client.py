@@ -113,6 +113,10 @@ class Iamport(object):
         url = '{}subscribe/customers/{}'.format(self.imp_url, customer_uid)
         return self._get(url)
 
+    def customer_delete(self, customer_uid):
+        url = '{}subscribe/customers/{}'.format(self.imp_url, customer_uid)
+        return self._delete(url)
+
     def pay_foreign(self, **kwargs):
         url = '{}subscribe/payments/foreign'.format(self.imp_url)
         for key in ['merchant_uid', 'amount', 'card_number', 'expiry']:
