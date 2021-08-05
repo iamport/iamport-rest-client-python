@@ -113,6 +113,10 @@ class Iamport(object):
         url = '{}subscribe/customers/{}'.format(self.imp_url, customer_uid)
         return self._get(url)
 
+    def customer_delete(self, customer_uid):
+        url = '{}subscribe/customers/{}'.format(self.imp_url, customer_uid)
+        return self._delete(url)
+
     def pay_foreign(self, **kwargs):
         url = '{}subscribe/payments/foreign'.format(self.imp_url)
         for key in ['merchant_uid', 'amount', 'card_number', 'expiry']:
@@ -133,6 +137,10 @@ class Iamport(object):
                     raise KeyError('Essential parameter is missing!: %s' % key)
 
         return self._post(url, kwargs)
+
+    def pay_schedule_get(self, merchant_id):
+        url = '{}subscribe/payments/schedule/{}'.format(self.imp_url, merchant_id)
+        return self._get(url)
 
     def pay_unschedule(self, **kwargs):
         url = '{}subscribe/payments/unschedule'.format(self.imp_url)
