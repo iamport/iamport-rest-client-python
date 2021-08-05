@@ -134,8 +134,8 @@ class Iamport(object):
 
         return self._post(url, kwargs)
 
-    def pay_schedule_get(self, merchant_id=''):
-        url = '{}subscribe/payments/schedule{}'.format(self.imp_url, merchant_id)
+    def pay_schedule_get(self, merchant_id):
+        url = '{}subscribe/payments/schedule/{}'.format(self.imp_url, merchant_id)
         return self._get(url)
 
     def pay_unschedule(self, **kwargs):
