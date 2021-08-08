@@ -142,6 +142,14 @@ class Iamport(object):
         url = '{}subscribe/payments/schedule/{}'.format(self.imp_url, merchant_id)
         return self._get(url)
 
+    def pay_schedule_get_between(self, **kwargs):
+        url = '{}subscribe/payments/schedule'.format(self.imp_url)
+        for key in ['schedule_from', 'schedule_to']:
+            if key not in kwargs:
+                raise KeyError('Essential parameter is missing!: %s' % key)
+
+        return self._get(url, kwargs)
+
     def pay_unschedule(self, **kwargs):
         url = '{}subscribe/payments/unschedule'.format(self.imp_url)
         if 'customer_uid' not in kwargs:
