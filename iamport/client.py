@@ -40,9 +40,13 @@ class Iamport(object):
 
     def _get_token(self):
         url = '{}users/getToken'.format(self.imp_url)
-        payload = {'imp_key': self.imp_key,
-                   'imp_secret': self.imp_secret}
-        response = self.requests_session.post(url, headers={'Content-Type': 'application/json'}, data=json.dumps(payload))
+        payload = {
+            'imp_key': self.imp_key,
+            'imp_secret': self.imp_secret
+        }
+        response = self.requests_session.post(
+            url, headers={'Content-Type': 'application/json'}, data=json.dumps(payload)
+        )
         return self.get_response(response).get('access_token')
 
     def get_headers(self):
@@ -58,7 +62,7 @@ class Iamport(object):
         headers['Content-Type'] = 'application/json'
         response = self.requests_session.post(url, headers=headers, data=json.dumps(payload))
         return self.get_response(response)
-    
+
     def _delete(self, url):
         headers = self.get_headers()
         response = self.requests_session.delete(url, headers=headers)
@@ -198,7 +202,7 @@ class Iamport(object):
         response = self._get(url)
         response_amount = response.get('amount')
         return response_amount == amount
-    
+
     def revoke_vbank_by_imp_uid(self, imp_uid):
         url = '{}vbanks/{}'.format(self.imp_url, imp_uid)
         return self._delete(url)
