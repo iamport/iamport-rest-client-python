@@ -3,7 +3,6 @@ from pytest import fixture
 
 from iamport import Iamport
 
-
 DEFAULT_TEST_IMP_KEY = 'imp_apikey'
 DEFAULT_TEST_IMP_SECRET = (
     'ekKoeW8RyKuT0zgaZsUtXXTLQ4AhPFW3ZGseDA6b'

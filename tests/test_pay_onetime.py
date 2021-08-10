@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import string
 import random
+import string
 
 
 def test_pay_onetime(iamport):
