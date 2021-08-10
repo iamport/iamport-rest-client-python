@@ -1,0 +1,4 @@
+requests
+pytest
+flake8
+isort
