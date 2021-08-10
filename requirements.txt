@@ -1,4 +1,4 @@
-requests
-pytest
-flake8
-isort
+requests==2.26.0
+pytest==6.2.4
+flake8==3.9.2
+isort==5.9.3
