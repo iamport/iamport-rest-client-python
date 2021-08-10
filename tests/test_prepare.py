@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-import datetime
 import random
 import string
-import time
 
 
 def test_prepare(iamport):
