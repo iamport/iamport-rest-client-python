@@ -70,4 +70,4 @@ def test_pay_schedule(iamport):
         iamport.pay_schedule(**payload_full)
     except iamport.ResponseError as e:
         assert e.code == 1
-        assert u'등록되지 않은 구매자입니다.' in e.message
+        assert u'등록된 고객정보가 없습니다.' in e.message
