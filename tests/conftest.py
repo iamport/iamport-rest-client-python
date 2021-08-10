@@ -13,13 +13,13 @@ DEFAULT_TEST_IMP_SECRET = (
 
 def pytest_addoption(parser):
     parser.addoption(
-        '--imp-key', 
+        '--imp-key',
         default=DEFAULT_TEST_IMP_KEY,
         help='iamport client key for testing '
         '[default: %(default)s]'
     )
     parser.addoption(
-        '--imp-secret', 
+        '--imp-secret',
         default=DEFAULT_TEST_IMP_SECRET,
         help='iamport secret key for testing '
         '[default: %(default)s]'

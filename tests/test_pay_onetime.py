@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-import string, random
+import string
+import random
 
 
 def test_pay_onetime(iamport):
     merchant_uid = ''.join(
-        random.choice(string.ascii_uppercase + string.digits) 
+        random.choice(string.ascii_uppercase + string.digits)
         for _ in range(10)
     )
 
@@ -23,7 +24,7 @@ def test_pay_onetime(iamport):
         assert "Essential parameter is missing!: card_number" in str(e)
 
     merchant_uid = ''.join(
-        random.choice(string.ascii_uppercase + string.digits) 
+        random.choice(string.ascii_uppercase + string.digits)
         for _ in range(10)
     )
 
