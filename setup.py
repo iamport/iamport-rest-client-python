@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import io
 import os
 
@@ -33,10 +31,6 @@ setup(
     zip_safe=False,
     data_files=[
         (
-            'shared/typehints/python2.7',
-            ['iamport/client.pyi'],
-        ),
-        (
             'shared/typehints/python3.6',
             ['iamport/client.pyi'],
         ),
@@ -60,7 +54,6 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',

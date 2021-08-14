@@ -4,8 +4,6 @@ jobs:
   includes:
   - python: pypy
     env: RUN_MYPY=false
-  - python: 2.7
-    env: RUN_MYPY=false
   - python: 3.4
     env: RUN_MYPY=false
   - python: 3.5
