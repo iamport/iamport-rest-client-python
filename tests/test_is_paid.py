@@ -5,7 +5,9 @@ def test_is_paid_with_response(iamport):
         'status': 'paid',
         'amount': 1000,
     }
-    assert True is iamport.is_paid(amount=1000, response=mocked_response, merchant_uid='test')
+    assert True is iamport.is_paid(
+        amount=1000, response=mocked_response, merchant_uid='test'
+    )
 
 
 def test_is_paid_without_response(iamport):
