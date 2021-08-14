@@ -1,7 +1,7 @@
-# -*- coding: utf-8 -*-
 from pytest import fixture
 
 from iamport import Iamport
+
 
 DEFAULT_TEST_IMP_KEY = 'imp_apikey'
 DEFAULT_TEST_IMP_SECRET = (

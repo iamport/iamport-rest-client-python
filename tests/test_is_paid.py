@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 
 def test_is_paid_with_response(iamport):
