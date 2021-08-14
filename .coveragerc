@@ -1,4 +1,0 @@
-[run]
-branch = true
-source = iamport
-omit = setup.py
