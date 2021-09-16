@@ -51,7 +51,7 @@ class Iamport(object):
         return self.get_response(response).get('access_token')
 
     def get_headers(self):
-        return {'X-ImpTokenHeader': self._get_token()}
+        return {'Authorization': self._get_token()}
 
     def _get(self, url, payload=None):
         headers = self.get_headers()
@@ -72,6 +72,10 @@ class Iamport(object):
         headers = self.get_headers()
         response = self.requests_session.delete(url, headers=headers)
         return self.get_response(response)
+
+    def find_by_status(self, status, **params):
+        url = '{}payments/status/{}'.format(self.imp_url, status)
+        return self._get(url, params=params)
 
     def find_by_merchant_uid(self, merchant_uid):
         url = '{}payments/find/{}'.format(self.imp_url, merchant_uid)
