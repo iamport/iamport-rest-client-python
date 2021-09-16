@@ -1,5 +1,5 @@
-I'mport; REST Client
---------------------
+I'mport; REST Client Python
+---------------------------
 
 [![Python Versions](https://img.shields.io/pypi/pyversions/iamport-rest-client)](https://pypi.org/project/iamport-rest-client/)
 [![PyPI Release (latest by date)](https://img.shields.io/pypi/v/iamport-rest-client?color=blue)](https://pypi.org/project/iamport-rest-client/)
@@ -15,8 +15,8 @@ I'mport; REST Client
 주의 사항
 -------
 * 이용 중 발생한 문제에 대해 책임지지 않습니다.
-* `lexifdev`님의 도움을 받아 작성되었습니다(`lexifdev's iamport 모듈 <https://github.com/lexifdev/iamport>`_)
-* 최초 작성은 `핑크퐁 북스토어 <https://store.pinkfong.com>`_ 에서 쓰기 위해 만들었습니다.
+* `lexifdev`님의 도움을 받아 작성되었습니다[`lexifdev's iamport 모듈](https://github.com/lexifdev/iamport)
+* 최초 작성은 `[핑크퐁 북스토어](https://store.pinkfong.com)`에서 쓰기 위해 만들었습니다.
 
 주요 기능
 ---
@@ -85,8 +85,6 @@ response = iamport.find(merchant_uid='{상품 아이디}')
 response = iamport.find(imp_uid='{IMP UID}')
 ```
 
-
-- 가격 확인  
 실제 제품 가격과 결제된 가격이 같은지 확인합니다.
 
 ```python
@@ -101,7 +99,6 @@ iamport.is_paid(product_price, response=response)
 ```
 
 
-- 취소  
 결제를 취소합니다.
 
 ```python
@@ -122,7 +119,6 @@ except Iamport.HttpError as http_error:
     print http_error.reason # HTTP not 200 에러난 이유를 알 수 있음
 ```
 
-- 비인증 결제  
 1회성 비인증 결제를 진행합니다.
 
 ```python
@@ -170,7 +166,6 @@ except Iamport.HttpError as http_error:
     pass
 ```
 
-- 정기 예약 결제  
 정기 결제를 예약합니다.
 
 ```python
@@ -232,7 +227,6 @@ except Iamport.HttpError as http_error:
     pass
 ```
 
-- 결제 사전 검증  
 결제될 내역에 대한 사전정보를 등록합니다
 
 ```python
@@ -265,7 +259,6 @@ except Iamport.HttpError as http_error:
     pass
 ```
 
-- 본인인증 결과 조회 및 관리  
 본인인증결과를 조회합니다.
 
 ```python
