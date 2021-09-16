@@ -12,6 +12,12 @@ I'mport; REST Client
 ---
 > Python 개발자를 위한 [아임포트 REST API](https://api.iamport.kr/) 연동 패키지입니다.
 
+주의 사항
+-------
+* 이용 중 발생한 문제에 대해 책임지지 않습니다.
+* `lexifdev`님의 도움을 받아 작성되었습니다(`lexifdev's iamport 모듈 <https://github.com/lexifdev/iamport>`_)
+* 최초 작성은 `핑크퐁 북스토어 <https://store.pinkfong.com>`_ 에서 쓰기 위해 만들었습니다.
+
 주요 기능
 ---
 1. 결제 정보 찾기
@@ -23,8 +29,7 @@ I'mport; REST Client
 
 설치
 ---
-> 아임포트를 설치하실 때 아나콘다를 이용한 아임포트 파이썬 가상환경 구성을 추천합니다.  
-[선택 사항] 아나콘다 환경에서 작업하신다면, 우선 아래의 절차를 진행해주세요.
+[추천 사항] 아나콘다 환경에서 작업하신다면, 우선 아래의 절차를 진행해주세요.
 ```bash
 # 아임포트 패키지를 위한 새로운 파이썬 가상환경을 생성해주세요. 이 때, 파이썬 버전은 최소 3.6 이상을 선택해주세요.
 conda create --name iamport python=3.6
@@ -33,17 +38,17 @@ conda create --name iamport python=3.6
 conda activate pymodi
 ```
 
-아래의 커맨드를 실행하여 최신버전의 아임포트 패키지를 설치해주세요.
+다음 커맨드를 실행하여 최신버전의 아임포트 패키지를 설치해주세요.
 ```bash
 python -m pip install iamport-rest-client --upgrade
 ```
 
-원하신다면, 현재 개발중인 버전의 아임포트 패키지를 아래의 커맨드로 설치하실 수 있습니다 (주의: 코드가 정상작동하지 않을 수 있음).
+현재 개발중인 버전의 아임포트 패키지를 아래의 커맨드로 설치하실 수 있습니다.
 ```bash
 python -m pip install git+https://github.com/iamport/iamport-rest-client-python.git@develop --upgrade
 ```
 
-혹은 특정 버전의 아임포트 패키지를 다음과 같이 설치하실 수 있습니다.
+혹은, 특정 버전의 아임포트 패키지를 다음과 같이 설치하실 수 있습니다.
 ```bash
 python -m pip install git+https://github.com/iamport/iamport-rest-client-python.git@v1.0.0 --upgrade
 ```
@@ -69,7 +74,7 @@ iamport = Iamport(imp_key='{발급받은 키}', imp_secret='{발급받은 시크
 사용 예제
 -------
 
-- 찾기
+- 찾기  
 결제를 진행한 상품 아이디나, 전달받은 IMP 아이디를 이용해 결제 정보를 찾습니다.
 
 ```python
@@ -81,7 +86,7 @@ response = iamport.find(imp_uid='{IMP UID}')
 ```
 
 
-- 가격 확인
+- 가격 확인  
 실제 제품 가격과 결제된 가격이 같은지 확인합니다.
 
 ```python
@@ -96,7 +101,7 @@ iamport.is_paid(product_price, response=response)
 ```
 
 
-- 취소
+- 취소  
 결제를 취소합니다.
 
 ```python
@@ -117,7 +122,7 @@ except Iamport.HttpError as http_error:
     print http_error.reason # HTTP not 200 에러난 이유를 알 수 있음
 ```
 
-- 비인증 결제
+- 비인증 결제  
 1회성 비인증 결제를 진행합니다.
 
 ```python
@@ -165,7 +170,7 @@ except Iamport.HttpError as http_error:
     pass
 ```
 
-- 정기 예약 결제
+- 정기 예약 결제  
 정기 결제를 예약합니다.
 
 ```python
@@ -227,7 +232,7 @@ except Iamport.HttpError as http_error:
     pass
 ```
 
-- 결제 사전 검증
+- 결제 사전 검증  
 결제될 내역에 대한 사전정보를 등록합니다
 
 ```python
@@ -244,7 +249,7 @@ except Iamport.HttpError as http_error:
     pass
 ```
 
-등록된 사전정보를 확인합니다
+등록된 사전정보를 확인합니다.
 
 ```python
 # 테스트용 값
@@ -260,7 +265,7 @@ except Iamport.HttpError as http_error:
     pass
 ```
 
-- 본인인증 결과 조회 및 관리
+- 본인인증 결과 조회 및 관리  
 본인인증결과를 조회합니다.
 
 ```python
