@@ -35,7 +35,7 @@ I'mport; REST Client Python
 conda create --name iamport python=3.6
 
 # 위에서 파이썬 가상환경이 정상적으로 설치되었다면, 해당 가상환경을 활성화해주세요.
-conda activate pymodi
+conda activate iamport
 ```
 
 다음 커맨드를 실행하여 최신버전의 아임포트 패키지를 설치해주세요.
@@ -58,7 +58,7 @@ python -m pip install git+https://github.com/iamport/iamport-rest-client-python.
 ```python
 from iamport import Iamport
 
-# 아임포트 객체를 테스트용 키와 시크릿을 사용하여 생성합니다 (테스트시 지출된 금액은 매일 밤 환불됩니다).
+# 아임포트 객체를 테스트용 키와 시크릿을 사용하여 생성합니다 (테스트시 지출된 금액은 매일 자정 이전 환불됩니다).
 iamport = Iamport(
     imp_key='imp_apikey', 
     imp_secret=(
