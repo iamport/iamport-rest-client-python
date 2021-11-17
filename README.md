@@ -1,5 +1,4 @@
-I'mport; REST Client Python
----------------------------
+# I'mport; REST Client Python
 
 [![Python Versions](https://img.shields.io/pypi/pyversions/iamport-rest-client)](https://pypi.org/project/iamport-rest-client/)
 [![PyPI Release (latest by date)](https://img.shields.io/pypi/v/iamport-rest-client?color=blue)](https://pypi.org/project/iamport-rest-client/)
@@ -7,19 +6,18 @@ I'mport; REST Client Python
 [![GitHub LICENSE](https://img.shields.io/github/license/iamport/iamport-rest-client-python)](https://github.com/iamport/iamport-rest-client-python/blob/master/LICENSE)
 [![Lines of Code](https://img.shields.io/tokei/lines/github/iamport/iamport-rest-client-python)](https://github.com/iamport/iamport-rest-client-python/tree/master/iamport)
 
+## 소개
 
-설명
----
 > Python 개발자를 위한 [아임포트 REST API](https://api.iamport.kr/) 연동 패키지입니다.
 
-주의 사항
--------
+### 주의 사항
+
 * 이용 중 발생한 문제에 대해 책임지지 않습니다.
 * `lexifdev`님의 도움을 받아 작성되었습니다[`lexifdev's iamport 모듈](https://github.com/lexifdev/iamport)
 * 최초 작성은 `[핑크퐁 북스토어](https://store.pinkfong.com)`에서 쓰기 위해 만들었습니다.
 
-주요 기능
----
+### 주요 기능
+
 1. 결제 정보 찾기
 2. 가격 확인
 3. 취소
@@ -27,34 +25,37 @@ I'mport; REST Client Python
 5. 정기 예약 결제
 6. 본인인증결과 조회 및 삭제
 
-설치
----
-[추천 사항] 아나콘다 환경에서 작업하신다면, 우선 아래의 절차를 진행해주세요.
+### 설치
+
 ```bash
-# 아임포트 패키지를 위한 새로운 파이썬 가상환경을 생성해주세요. 이 때, 파이썬 버전은 최소 3.6 이상을 선택해주세요.
+# mac, linux
+pip install iamport-rest-client
+
+# 아나콘다
 conda create --name iamport python=3.6
-
-# 위에서 파이썬 가상환경이 정상적으로 설치되었다면, 해당 가상환경을 활성화해주세요.
 conda activate iamport
-```
-
-다음 커맨드를 실행하여 최신버전의 아임포트 패키지를 설치해주세요.
-```bash
 python -m pip install iamport-rest-client --upgrade
+
+# 개발버전
+pip install git+https://github.com/iamport/iamport-rest-client-python.git@master --upgrade  # master
+pip install git+https://github.com/iamport/iamport-rest-client-python.git@v1.0.0 --upgrade  # 특정 버전
 ```
 
-현재 개발중인 버전의 아임포트 패키지를 아래의 커맨드로 설치하실 수 있습니다.
+### 개발 환경
+
 ```bash
-python -m pip install git+https://github.com/iamport/iamport-rest-client-python.git@develop --upgrade
+# venv 등 환경 준비 및 활성화
+pip install -e .[dev]
+pytest  # 테스트 실행
 ```
 
-혹은, 특정 버전의 아임포트 패키지를 다음과 같이 설치하실 수 있습니다.
-```bash
-python -m pip install git+https://github.com/iamport/iamport-rest-client-python.git@v1.0.0 --upgrade
-```
+### 기여하기
 
-사용 준비
--------
+[iamport-rest-client-python 프로젝트 보드](https://github.com/iamport/iamport-rest-client-python/projects/1)의 `To do` 탭을 참고해주세요.
+
+## 사용법
+
+### 설정
 
 ```python
 from iamport import Iamport
@@ -72,8 +73,7 @@ iamport = Iamport(
 iamport = Iamport(imp_key='{발급받은 키}', imp_secret='{발급받은 시크릿}')
 ```
 
-사용 예제
--------
+### 예제
 
 결제를 진행한 상품 아이디나, 전달받은 IMP 아이디를 이용해 결제 정보를 찾습니다.
 
@@ -97,7 +97,6 @@ iamport.is_paid(product_price, imp_uid='{IMP UID}')
 # 이미 찾은 response 재활용하여 확인
 iamport.is_paid(product_price, response=response)
 ```
-
 
 결제를 취소합니다.
 
@@ -282,7 +281,3 @@ except Iamport.HttpError as http_error:
     # HTTP not 200 응답 에러 처리
     pass      
 ```
-
-기여하기
-------
-[iamport-rest-client-python 프로젝트 보드](https://github.com/iamport/iamport-rest-client-python/projects/1)의 `To do` 탭을 참고해주세요.
