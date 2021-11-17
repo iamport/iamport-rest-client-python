@@ -55,12 +55,13 @@ python -m pip install git+https://github.com/iamport/iamport-rest-client-python.
 
 사용 준비
 -------
+
 ```python
 from iamport import Iamport
 
 # 아임포트 객체를 테스트용 키와 시크릿을 사용하여 생성합니다 (테스트시 지출된 금액은 매일 자정 이전 환불됩니다).
 iamport = Iamport(
-    imp_key='imp_apikey', 
+    imp_key='imp_apikey',
     imp_secret=(
         'ekKoeW8RyKuT0zgaZsUtXXTLQ4AhPFW3ZGseDA6b'
         'kA5lamv9OqDMnxyeB9wqOsuO9W3Mx9YSJ4dTqJ3f'
@@ -102,20 +103,20 @@ iamport.is_paid(product_price, response=response)
 
 ```python
 # 상품 아이디로 취소
-response = iamport.cancel(u'취소하는 이유', merchant_uid='{상품 아이디}')
+response = iamport.cancel('취소하는 이유', merchant_uid='{상품 아이디}')
 
 # I'mport; 아이디로 취소
-response = iamport.cancel(u'취소하는 이유', imp_uid='{IMP UID}')
+response = iamport.cancel('취소하는 이유', imp_uid='{IMP UID}')
 
 # 취소시 오류 예외처리(이미 취소된 결제는 에러가 발생함)
 try:
-    response = iamport.cancel(u'취소하는 이유', imp_uid='{IMP UID}')
+    response = iamport.cancel('취소하는 이유', imp_uid='{IMP UID}')
 except Iamport.ResponseError as e:
-    print e.code
-    print e.message  # 에러난 이유를 알 수 있음
+    print(e.code)
+    print(e.message)  # 에러난 이유를 알 수 있음
 except Iamport.HttpError as http_error:
-    print http_error.code
-    print http_error.reason # HTTP not 200 에러난 이유를 알 수 있음
+    print(http_error.code)
+    print(http_error.reason) # HTTP not 200 에러난 이유를 알 수 있음
 ```
 
 1회성 비인증 결제를 진행합니다.
@@ -174,26 +175,24 @@ payload = {
     'schedules': [
         {
             'merchant_uid': 'test_merchant_01',
-            # UNIX timestamp
-        'schedule_at': 1478150985,
-        'amount': 1004
+            'schedule_at': 1478150985,  # UNIX timestamp
+            'amount': 1004
         },
         {
             'merhcant_uid': 'test_merchant_02',
-        # UNIX timestamp
-        'schedule_at': 1478150985,
-        'amount': 5000,
-        'name': '{주문명}',
-        'buyer_name': '{주문자명}',
-        'buyer_email': '{주문자 이메일}',
-        'buyer_tel': '{주문자 전화번호}',
-        'buyer_addr': '{주문자 주소}',
-        'buyer_postcode': '{주문자 우편번호}',
+            'schedule_at': 1478150985,  # UNIX timestamp
+            'amount': 5000,
+            'name': '{주문명}',
+            'buyer_name': '{주문자명}',
+            'buyer_email': '{주문자 이메일}',
+            'buyer_tel': '{주문자 전화번호}',
+            'buyer_addr': '{주문자 주소}',
+            'buyer_postcode': '{주문자 우편번호}',
         },
     ]
 }
 try:
-    reponse = iamport.pay_schedule(**payload)
+    response = iamport.pay_schedule(**payload)
 except KeyError:
     # 필수 값이 없을때 에러 처리
     pass

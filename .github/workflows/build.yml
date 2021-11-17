@@ -21,13 +21,13 @@ jobs:
         pip install -r requirements.txt
     - name: Run unit tests
       run: |
-        python -m pytest --cov=iamport tests
+        python -m pytest --cov=iamport
     - name: Run convention tests
       run: |
-        python -m flake8 iamport tests --ignore E203,W503,W504
+        python -m flake8 iamport tests
     - name: Run type check
       run: |
-        python -m mypy iamport
+        python -m mypy iamport tests
     - name: Run import sort check
       run: |
         python -m isort iamport tests --diff
