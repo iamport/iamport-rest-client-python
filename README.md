@@ -151,7 +151,7 @@ payload = {
     'customer_uid': '{고객 아이디}',
     'merchant_uid': '00000000',
     'amount': 5000,
-    'name' : '제품명'
+    'name' : '제품명',
 }
 try:
     response = iamport.pay_again(**payload)
