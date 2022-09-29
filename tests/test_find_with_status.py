@@ -1,6 +1,7 @@
 def test_find_with_status(iamport):
     try:
-        iamport.find_by_merchant_uid(merchant_uid='1234qwer', status='cancelled')
+        iamport.find_by_merchant_uid(merchant_uid='1234qwer',
+                                     status='cancelled')
     except iamport.HttpError as e:
         assert e.code == 404
 
