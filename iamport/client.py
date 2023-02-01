@@ -68,9 +68,11 @@ class Iamport(object):
         )
         return self.get_response(response)
 
-    def _delete(self, url):
+    def _delete(self, url, payload=None):
         headers = self.get_headers()
-        response = self.requests_session.delete(url, headers=headers)
+        response = self.requests_session.delete(
+            url, headers=headers, params=payload
+        )
         return self.get_response(response)
 
     def find_by_status(self, status, **kwargs):
@@ -132,9 +134,9 @@ class Iamport(object):
         url = '{}subscribe/customers/{}'.format(self.imp_url, customer_uid)
         return self._get(url)
 
-    def customer_delete(self, customer_uid):
+    def customer_delete(self, customer_uid, **kwargs):
         url = '{}subscribe/customers/{}'.format(self.imp_url, customer_uid)
-        return self._delete(url)
+        return self._delete(url, kwargs)
 
     def pay_foreign(self, **kwargs):
         url = '{}subscribe/payments/foreign'.format(self.imp_url)
