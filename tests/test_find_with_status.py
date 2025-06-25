@@ -10,3 +10,6 @@ def test_find_with_status(iamport):
 
     res = iamport.find_by_merchant_uid(merchant_uid='1234qwer', status='paid')
     assert res['merchant_uid'] == '1234qwer'
+
+    res = iamport.find_by_status(status='paid', payload={'page':'4',})
+    assert res['total'] != 0
