@@ -75,7 +75,7 @@ class Iamport(object):
 
     def find_by_status(self, status, **params):
         url = '{}payments/status/{}'.format(self.imp_url, status)
-        return self._get(url, params=params)
+        return self._get(url, payload=params)
 
     def find_by_merchant_uid(self, merchant_uid, status=None):
         url = '{}payments/find/{}'.format(self.imp_url, merchant_uid)
