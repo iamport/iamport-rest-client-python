@@ -1,5 +1,10 @@
 # I'mport; REST Client Python
 
+> **⚠️ DEPRECATED**: 이 레포지토리는 2026년 3월 4일부로 deprecated 되었으며, 공식 지원이 되지 않습니다.
+> 본 클라이언트는 함께 포함된 [openapi.json](./openapi.json) Swagger spec 기준으로 동작합니다.
+> 추가/수정이 필요한 경우 본 레포지토리를 fork하여 수정하거나,
+> [PortOne V1 REST API 문서](https://developers.portone.io/api/rest-v1?v=v1)를 참고하여 REST client를 직접 구현해주세요.
+
 [![Python Versions](https://img.shields.io/pypi/pyversions/iamport-rest-client)](https://pypi.org/project/iamport-rest-client/)
 [![PyPI Release (latest by date)](https://img.shields.io/pypi/v/iamport-rest-client?color=blue)](https://pypi.org/project/iamport-rest-client/)
 [![GitHub Workflow Status (Build)](https://img.shields.io/github/workflow/status/iamport/iamport-rest-client-python/Build%20Status)](https://github.com/iamport/iamport-rest-client-python/actions)
@@ -18,12 +23,26 @@
 
 ### 주요 기능
 
-1. 결제 정보 찾기
-2. 가격 확인
-3. 취소
-4. 비 인증 결제
-5. 정기 예약 결제
-6. 본인인증결과 조회 및 삭제
+1. 결제 정보 찾기 (단건/복수건/상태별 조회)
+2. 가격 확인 (사전등록/검증)
+3. 취소 (전액/부분 취소)
+4. 비 인증 결제 (일회성/재결제/해외카드)
+5. 정기 예약 결제 (예약/조회/수정/재시도/취소)
+6. 본인인증결과 조회 및 삭제 (OTP 인증 포함)
+7. 빌링키 관리 (등록/조회/삭제/결제내역/예약내역)
+8. 가상계좌 (발급/수정/취소/예금주 조회)
+9. 에스크로 배송정보 (등록/수정/조회)
+10. 현금영수증 (발급/조회/취소/외부발급)
+11. 카드사/은행 코드 조회
+12. 네이버페이 주문관리 (17개 API)
+13. 베네피아 포인트 (조회/결제)
+14. 편의점 결제 (발급/취소)
+15. KCP Quick 결제 (회원삭제/선불결제)
+16. 파트너 정산
+17. 페이코 주문상태 변경
+18. Paymentwall 배송정보
+19. 티어 정보 조회
+20. PG 설정 조회
 
 ### 설치
 
@@ -280,5 +299,64 @@ except Iamport.ResponseError as e:
     pass
 except Iamport.HttpError as http_error:
     # HTTP not 200 응답 에러 처리
-    pass      
+    pass
+```
+
+카드사/은행 코드를 조회합니다.
+
+```python
+# 전체 카드사 코드 조회
+cards = iamport.find_all_cards()
+
+# 특정 카드사 코드 조회
+card = iamport.find_card(card_standard_code='{카드사 코드}')
+
+# 전체 은행 코드 조회
+banks = iamport.find_all_banks()
+
+# 특정 은행 코드 조회
+bank = iamport.find_bank(bank_standard_code='{은행 코드}')
+```
+
+가상계좌를 발급하고 관리합니다.
+
+```python
+# 가상계좌 발급
+response = iamport.create_vbank(
+    channel_key='{채널키}',
+    merchant_uid='{주문번호}',
+    amount=10000,
+    vbank_code='{은행코드}',
+    vbank_due=1640995200,
+)
+
+# 가상계좌 수정
+response = iamport.modify_vbank('{IMP UID}', amount=20000)
+
+# 가상계좌 취소
+response = iamport.revoke_vbank_by_imp_uid('{IMP UID}')
+
+# 예금주 조회
+response = iamport.find_vbank_holder(bank_code='{은행코드}', bank_num='{계좌번호}')
+```
+
+에스크로 배송정보를 관리합니다.
+
+```python
+sender = {'name': '보내는분', 'tel': '01012345678'}
+receiver = {'name': '받는분', 'tel': '01087654321'}
+logis = {'company': 'CJ', 'invoice': '1234567890', 'sent_at': 1640995200}
+
+# 배송정보 등록
+response = iamport.create_escrow_logis(
+    '{IMP UID}', sender=sender, receiver=receiver, logis=logis
+)
+
+# 배송정보 수정
+response = iamport.update_escrow_logis(
+    '{IMP UID}', sender=sender, receiver=receiver, logis=logis
+)
+
+# 배송정보 조회
+response = iamport.find_escrow_logis('{IMP UID}')
 ```
