@@ -18,4 +18,4 @@ def test_pay_foreign(iamport):
     try:
         iamport.pay_foreign(**payload)
     except iamport.ResponseError as e:
-        assert e.code == -1
+        assert e.code == 1
